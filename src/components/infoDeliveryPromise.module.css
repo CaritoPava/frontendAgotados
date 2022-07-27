@@ -1,0 +1,40 @@
+.contendInfodelivery {
+  margin: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.contePromise {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--barbecue);
+  border-radius: 20px;
+  align-items: center;
+}
+
+.reacticons {
+  font-size: 3vw;
+  color: white
+}
+
+
+.contePromise p {
+  padding: 5px;
+  margin: 5px;
+  color: white
+}
+
+.contePromise h3 {
+  padding: 5px;
+  margin: 5px;
+}
+
+.activeToGray {
+  background-color: rgb(218, 217, 217);
+  display: flex;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

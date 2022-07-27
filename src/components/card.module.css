@@ -1,0 +1,76 @@
+.contendCard1 {
+  background-color: var(--rojoSayonara);
+  border-radius: 15px;
+  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  max-width: 30%;
+  margin: 10px;
+  height: auto;
+  padding: 30px;
+  overflow: hidden
+}
+
+.contendCard2 {
+  background-color: var(--menta);
+  border-radius: 15px;
+  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  max-width: 30%;
+  margin: 10px;
+  height: auto;
+  padding: 30px;
+  overflow: hidden
+}
+
+.contendCard3 {
+  background-color: var(--naranjaClaro);
+  border-radius: 15px;
+  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  max-width: 30%;
+  margin: 10px;
+  height: auto;
+  padding: 30px;
+  overflow: hidden
+}
+
+.contendCard4 {
+  background-color: var(--barbecue);
+  border-radius: 15px;
+  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  max-width: 30%;
+  margin: 10px;
+  height: auto;
+  padding: 30px;
+  overflow: hidden
+}
+
+.contendCard5 {
+  background-color: var(--azulBrillante);
+  border-radius: 15px;
+  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  max-width: 30%;
+  margin: 10px;
+  height: auto;
+  padding: 30px;
+  overflow: hidden
+}
+
+.contendCard6 {
+  background-color: var(--naranja);
+  border-radius: 15px;
+  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  max-width: 30%;
+  margin: 10px;
+  height: auto;
+  padding: 30px;
+  overflow: hidden
+}
+
+.contendCard7 {
+  background-color: var(--amarillo);
+  border-radius: 15px;
+  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  max-width: 30%;
+  margin: 10px;
+  height: auto;
+  padding: 30px;
+  overflow: hidden
+}

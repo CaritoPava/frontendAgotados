@@ -1,0 +1,22 @@
+.conteListProducts {
+  display: flex;
+  justify-content: space-around;
+}
+
+.conteListProducts h3 {
+  font-size: 1.3rem;
+}
+
+.productsSoldOut {
+  /* background-color: rgba(255, 0, 0, 0.236); */
+  text-align: left;
+  font-size: 2vw;
+  line-height: 40px;
+}
+
+.productsSuggest {
+  /* background-color: rgba(39, 239, 65, 0.236); */
+  text-align: left;
+  font-size: 2vw;
+  line-height: 40px;
+}
