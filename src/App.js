@@ -3,6 +3,8 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client'
 import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 import axios from 'axios'
 
 import { AvTreintaAgosto } from './components/cardsPDV/AvTreintaAgosto';
@@ -20,6 +22,7 @@ const socket = io('http://54.144.167.225:9000', {
   }
 })
 
+const MySwal = withReactContent(Swal)
 
 function App() {
 
@@ -27,6 +30,7 @@ function App() {
   const [infoPlaces, setInfoPlaces] = useState({})
   const [soldOut, setSoldout] = useState([])
   const [suggest, setSuggest] = useState([])
+  const [alert, setAlert] = useState("")
 
   useEffect(() => {
     socket.on('connection', () => {
@@ -69,35 +73,6 @@ function App() {
     }
   }, [])
 
-  // useEffect(() => {
-  //   let timerInterval
-  //   Swal.fire({
-  //     title: 'ACTUALIZACION',
-  //     html: 'NUEVO PRODUCTO ',
-  //     timer: 5000,
-  //     timerProgressBar: true,
-  //     didOpen: () => {
-  //       Swal.showLoading()
-  //       const b = Swal.getHtmlContainer().querySelector('b')
-  //       timerInterval = setInterval(() => {
-  //         b.textContent = Swal.getTimerLeft()
-  //       }, 100)
-  //     },
-  //     willClose: () => {
-  //       clearInterval(timerInterval)
-  //     }
-  //   }).then((result) => {
-  //     /* Read more about handling dismissals below */
-  //     if (result.dismiss === Swal.DismissReason.timer) {
-  //       console.log('I was closed by the timer')
-  //     }
-  //   })
-  //   return () => {
-
-  //   }
-  // }, [soldOut, suggest])
-
-
   socket.on('stock_cc_places', (args) => {
     console.log(args, 'socket')
     console.log(infoPlaces, 'api en socket')
@@ -113,6 +88,21 @@ function App() {
       ...soldOut,
       args
     ])
+    console.log(args)
+    setAlert(args)
+    if (soldOut.length > 0) {
+      MySwal.fire({
+        title: '¡NUEVO AGOTADO!',
+        text: `${args.productName} está agotado en ${args.place}`,
+        icon: 'error',
+        iconColor: 'white',
+        timer: 4000,
+        showConfirmButton: false,
+        background: '#BA080D',
+        color: 'white',
+        allowOutsideClick: true,
+      })
+    }
   })
 
   socket.on('stock_cc_suggest', (args) => {
@@ -120,9 +110,42 @@ function App() {
       ...suggest,
       args
     ])
+    setAlert(args)
+    if (soldOut.length > 0) {
+      MySwal.fire({
+        title: '¡NUEVO SUGERIDO!',
+        text: `${args.productName} es sugerido en ${args.place}`,
+        icon: 'success',
+        iconColor: 'white',
+        timer: 4000,
+        showConfirmButton: false,
+        background: '#0E9528',
+        color: 'white',
+        allowOutsideClick: true,
+      })
+    }
   })
 
 
+  socket.on('stock_cc_soldout_remove', () => {
+    const urlSoldOut = 'http://54.144.167.225:8080/api/soldout'
+    axios.get(urlSoldOut)
+      .then(({ data }) => {
+        setSoldout(data.message)
+      }
+      )
+      .catch(err => console.log(err))
+  })
+
+  socket.on('stock_cc_suggest_remove', () => {
+    const urlSuggest = 'http://54.144.167.225:8080/api/suggest'
+    axios.get(urlSuggest)
+      .then(({ data }) => {
+        setSoldout(data.message)
+      }
+      )
+      .catch(err => console.log(err))
+  })
 
   return (
     <div >
