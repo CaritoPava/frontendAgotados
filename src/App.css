@@ -2,9 +2,9 @@
   font-size: 1.3vw;
 }
 
-body {
+/* body {
   overflow-x: hidden;
-}
+} */
 
 .cardContend {
   width: 100%;
@@ -31,5 +31,6 @@ body {
   --naranjaClaro: #ec671a;
   --amarillo: #FDC533;
   --azulBrillante: #63c3d1;
-  --menta: #88cccc
+  --menta: #88cccc;
+  --green: green
 }

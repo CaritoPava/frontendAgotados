@@ -1,22 +1,51 @@
 import styles from './infoDeliveryPromise.module.css'
 import { FaMotorcycle } from 'react-icons/fa'
 import { IconContext } from 'react-icons'
-import { BiCake } from 'react-icons/bi'
-import { MdMenuBook } from 'react-icons/md'
+import { FaHamburger } from 'react-icons/fa'
 
-export const InfoDeliveryPromise = () => {
+export const InfoDeliveryPromise = ({ place, infoPlaces }) => {
+
+  const promes = 10
+
+  // console.log('esta es la info')
+
+  // console.log(place, 'place!!!!OJO')
+  // console.log(infoPlaces, 'Info place!!!!')
+  // console.log(infoPlaces.cerritos)
+
+
   return (
-    <div className={styles.contendInfodelivery}>
-      <IconContext.Provider value={{ className: styles.reacticons }}>
-        <div className={styles.contePromise}>
-          <h3>< FaMotorcycle /></h3>
-          <p> 2h y 7 min</p>
-          <p><BiCake /> </p>
-          <p> 80 Min</p>
-          <p><MdMenuBook /></p>
-          <p>70 Min</p>
-        </div>
-      </IconContext.Provider>
-    </div>
+    <>
+
+      <div className={styles.contendInfodelivery}>
+
+        <IconContext.Provider value={{ className: styles.reacticons }}>
+
+          {
+            promes <= 45 ?
+              <div className={styles.contePromise2}>
+                <p><FaMotorcycle /></p>
+                <p>{promes}</p>
+              </div>
+              :
+              promes >= 80 ?
+                <div className={styles.contePromise4}>
+                  <p><FaMotorcycle /></p>
+                  <p>{promes}</p>
+                </div>
+                :
+                <div className={styles.contePromise3}>
+                  <p><FaMotorcycle /></p>
+                  <p>{promes}</p>
+                </div>
+          }
+          <div className={styles.contePromise}>
+            <p><FaHamburger /></p>
+            <p>40</p>
+          </div>
+        </IconContext.Provider>
+      </div>
+
+    </>
   )
 }

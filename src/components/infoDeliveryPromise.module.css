@@ -1,16 +1,49 @@
 .contendInfodelivery {
   margin: 0px 20px;
   display: flex;
-  flex-direction: column;
   font-weight: bold;
+  align-items: center;
+  text-align: center;
 }
 
 .contePromise {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: var(--barbecue);
   border-radius: 20px;
   align-items: center;
+  width: 50%;
+  font-size: 3vw;
+}
+
+.contePromise2 {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--green);
+  border-radius: 20px;
+  align-items: center;
+  width: 50%;
+  font-size: 3vw;
+}
+
+.contePromise3 {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--amarillo);
+  border-radius: 20px;
+  align-items: center;
+  width: 50%;
+  font-size: 3vw;
+}
+
+.contePromise4 {
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--rojoSayonara);
+  border-radius: 20px;
+  align-items: center;
+  width: 50%;
+  font-size: 3vw;
 }
 
 .reacticons {
@@ -29,6 +62,18 @@
   padding: 5px;
   margin: 5px;
 }
+
+.contePromise2 p {
+  padding: 5px;
+  margin: 5px;
+  color: white
+}
+
+.contePromise2 h3 {
+  padding: 5px;
+  margin: 5px;
+}
+
 
 .activeToGray {
   background-color: rgb(218, 217, 217);
