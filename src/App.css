@@ -38,3 +38,27 @@
 .alert {
   background: var(--amarillo);
 }
+
+.select-pdv {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnSelectPDV {
+  background-color: var(--barbecue);
+  border-radius: 5px;
+  width: auto;
+  margin: 5px;
+  height: auto;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s;
+  color: white;
+}
+
+.btnSelectPDV:hover {
+  background-color: rgb(80, 218, 25);
+  color: white;
+  transform: translateY(3px)
+}

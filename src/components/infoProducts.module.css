@@ -7,6 +7,10 @@
   font-size: 1.3rem;
 }
 
+.conteListProducts p {
+  font-size: 1.3rem;
+}
+
 .productsSoldOut {
   /* background-color: rgba(255, 0, 0, 0.236); */
   text-align: left;

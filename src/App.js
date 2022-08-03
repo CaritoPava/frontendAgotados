@@ -4,23 +4,33 @@ import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-
+import styled from "styled-components";
 import axios from 'axios'
 
 import { AvTreintaAgosto } from './components/cardsPDV/AvTreintaAgosto';
 import { Circunvalar } from './components/cardsPDV/Circunvalar';
 import { Cerritos } from './components/cardsPDV/Cerritos';
-// import { CiudadVictoria } from './components/cardsPDV/CiudadVictoria';
-// import { Unicentro } from './components/cardsPDV/Unicentro';
+import { CiudadVictoria } from './components/cardsPDV/CiudadVictoria';
+import { Unicentro } from './components/cardsPDV/Unicentro';
 import { Manizales } from './components/cardsPDV/Manizales';
-// import { Armenia } from './components/cardsPDV/Armenia';
-// import { Arboleda } from './components/cardsPDV/Arboleda';
+import { Arboleda } from './components/cardsPDV/Arboleda';
 
-const socket = io('http://54.144.167.225:9000', {
+const socket = io('http://3.93.184.201:9000', {
   query: {
     alias: 'call center'
   }
 })
+
+const places = {
+  circunvalar: "CIRCUNVALAR",
+  treinta: "AV 30 DE AGOSTO",
+  cerritos: "P DE CERRITOS",
+  arboleda: "PARQUE ARBOLEDA",
+  victoria: "CIUDAD VICTORIA",
+  manizales: "MANIZALES",
+  unicentro: "UNICENTRO",
+  armenia: "ARMENIA"
+}
 
 const MySwal = withReactContent(Swal)
 
@@ -31,6 +41,17 @@ function App() {
   const [soldOut, setSoldout] = useState([])
   const [suggest, setSuggest] = useState([])
   const [alert, setAlert] = useState("")
+  const [color, setColor] = useState(false)
+  const [viewPDV, setViewPDV] = useState({
+    circunvalar: false,
+    treinta: false,
+    cerritos: false,
+    arboleda: false,
+    victoria: false,
+    manizales: false,
+    unicentro: false,
+    armenia: false
+  })
 
   useEffect(() => {
     socket.on('connection', () => {
@@ -41,9 +62,9 @@ function App() {
       setIsConnected(false)
     })
 
-    const urlPlaces = 'http://54.144.167.225:8080/api/places'
-    const urlSoldOut = 'http://54.144.167.225:8080/api/soldout'
-    const urlSuggest = 'http://54.144.167.225:8080/api/suggest'
+    const urlPlaces = 'http://3.93.184.201:8080/api/places'
+    const urlSoldOut = 'http://3.93.184.201:8080/api/soldout'
+    const urlSuggest = 'http://3.93.184.201:8080/api/suggest'
 
     try {
       axios.get(urlPlaces)
@@ -74,13 +95,10 @@ function App() {
   }, [])
 
   socket.on('stock_cc_places', (args) => {
-    console.log(args, 'socket')
-    console.log(infoPlaces, 'api en socket')
     setInfoPlaces({
       ...infoPlaces,
       [Object.keys(args)]: args[Object.keys(args)]
     })
-    console.log(infoPlaces, 'api + socket')
   })
 
   socket.on('stock_cc_soldout', (args) => {
@@ -88,12 +106,12 @@ function App() {
       ...soldOut,
       args
     ])
-    console.log(args)
+
     setAlert(args)
     if (soldOut.length > 0) {
       MySwal.fire({
         title: '¡NUEVO AGOTADO!',
-        text: `${args.productName} está agotado en ${args.place}`,
+        text: `${args.productName} está agotado en ${places[args.place]}`,
         icon: 'error',
         iconColor: 'white',
         timer: 4000,
@@ -127,8 +145,10 @@ function App() {
   })
 
 
-  socket.on('stock_cc_soldout_remove', () => {
-    const urlSoldOut = 'http://54.144.167.225:8080/api/soldout'
+  socket.on('stock_cc_soldout_remove', (args) => {
+    console.log(args, 'hoooooooola')
+    console.log('llegó')
+    const urlSoldOut = 'http://3.93.184.201:8080/api/soldout'
     axios.get(urlSoldOut)
       .then(({ data }) => {
         setSoldout(data.message)
@@ -137,11 +157,14 @@ function App() {
       .catch(err => console.log(err))
   })
 
-  socket.on('stock_cc_suggest_remove', () => {
-    const urlSuggest = 'http://54.144.167.225:8080/api/suggest'
+  socket.on('stock_cc_suggest_remove', (args) => {
+    console.log(args)
+    console.log('llegó')
+    const urlSuggest = 'http://3.93.184.201:8080/api/suggest'
     axios.get(urlSuggest)
       .then(({ data }) => {
         setSoldout(data.message)
+        console.log(soldOut)
       }
       )
       .catch(err => console.log(err))
@@ -149,15 +172,23 @@ function App() {
 
   return (
     <div >
+
+      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })}>Circunvalar</button>
+      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, treinta: !viewPDV.treinta })}>Av 30 de Agosto</button>
+      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, cerritos: !viewPDV.cerritos })}>Cerritos</button>
+      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, arboleda: !viewPDV.arboleda })}>Arboleda</button>
+      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, victoria: !viewPDV.victoria })}>Victoria</button>
+      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, manizales: !viewPDV.manizales })}>Manizales</button>
+      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, unicentro: !viewPDV.unicentro })}>Unicentro</button>
+
       <div className='cardContend'>
-        <AvTreintaAgosto place={'treinta'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />
-        <Circunvalar place={'circunvalar'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />
-        <Cerritos place={'cerritos'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />
-        {/* <CiudadVictoria place={'ciudadvictoria'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} /> */}
-        {/* <Unicentro place={'unicentro'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} /> */}
-        <Manizales place={'manizales'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />
-        {/* <Armenia place={'armenia'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} /> */}
-        {/* <Arboleda place={'arboleda'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} /> */}
+        {viewPDV.circunvalar && <Circunvalar place={'circunvalar'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+        {viewPDV.treinta && <AvTreintaAgosto place={'treinta'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+        {viewPDV.cerritos && <Cerritos place={'cerritos'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+        {viewPDV.arboleda && <Arboleda place={'arboleda'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+        {viewPDV.victoria && <CiudadVictoria place={'victoria'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+        {viewPDV.manizales && <Manizales place={'manizales'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+        {viewPDV.unicentro && <Unicentro place={'unicentro'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
       </div>
     </div>
   );

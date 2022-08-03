@@ -1,5 +1,5 @@
 .contendCard1 {
-  background-color: var(--amarillo);
+  background-color: white;
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
   width: auto;
@@ -73,4 +73,51 @@
 .namePDV {
   text-align: center;
   font-size: 1.3rem;
+  background-color: var(--amarillo);
+}
+
+.namePDV2 {
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: var(--rojoSayonara);
+  color: white
+}
+
+.namePDV3 {
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: var(--barbecue);
+  color: white
+}
+
+.namePDV4 {
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: var(--azulBrillante);
+}
+
+.namePDV5 {
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: var(--naranjaClaro);
+}
+
+.namePDV6 {
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: var(--menta);
+}
+
+.namePDV6 {
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: var(--naranja);
+  color: white
+}
+
+.namePDV7 {
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: var(--green);
+  color: white
 }
