@@ -146,8 +146,7 @@ function App() {
 
 
   socket.on('stock_cc_soldout_remove', (args) => {
-    console.log(args, 'hoooooooola')
-    console.log('llegó')
+    console.log(args)
     const urlSoldOut = 'http://3.93.184.201:8080/api/soldout'
     axios.get(urlSoldOut)
       .then(({ data }) => {
@@ -159,12 +158,10 @@ function App() {
 
   socket.on('stock_cc_suggest_remove', (args) => {
     console.log(args)
-    console.log('llegó')
     const urlSuggest = 'http://3.93.184.201:8080/api/suggest'
     axios.get(urlSuggest)
       .then(({ data }) => {
-        setSoldout(data.message)
-        console.log(soldOut)
+        setSuggest(data.message)
       }
       )
       .catch(err => console.log(err))
