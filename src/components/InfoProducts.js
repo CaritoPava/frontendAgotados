@@ -7,19 +7,19 @@ export const InfoProducts = ({ place, soldOut, suggest }) => {
 
   return (
     <div className={styles.conteListProducts}>
-      <div>
-        <h3>Agotados-</h3>
-        {soldOut.map(product => {
+      <div className={styles.conteProducts}>
+        <h3 className={styles.titleList}>Agotados</h3>
+        {soldOut.map((product, idx) => {
           if (product.place === place) {
-            return <p>{product.productName}</p>
+            return <p key={idx} >{product.productName}</p>
           }
         })}
       </div>
-      <div>
-        <h3>-Sugeridos</h3>
-        {suggest.map(product => {
+      <div className={styles.conteProducts}>
+        <h3 className={styles.titleList}>Sugeridos</h3>
+        {suggest.map((product, idx) => {
           if (product.place === place) {
-            return <p>{product.productName}</p>
+            return <p key={idx}>{product.productName}</p>
           }
         })}
       </div>

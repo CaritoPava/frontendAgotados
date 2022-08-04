@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import styled from "styled-components";
 import axios from 'axios'
+import ReactAudioPlayer from 'react-audio-player';
 
 import { AvTreintaAgosto } from './components/cardsPDV/AvTreintaAgosto';
 import { Circunvalar } from './components/cardsPDV/Circunvalar';
@@ -14,6 +15,7 @@ import { CiudadVictoria } from './components/cardsPDV/CiudadVictoria';
 import { Unicentro } from './components/cardsPDV/Unicentro';
 import { Manizales } from './components/cardsPDV/Manizales';
 import { Arboleda } from './components/cardsPDV/Arboleda';
+import { SoundButton } from './components/controls/SoundButton';
 
 const socket = io('http://3.93.184.201:9000', {
   query: {
@@ -52,6 +54,7 @@ function App() {
     unicentro: false,
     armenia: false
   })
+  const [audioAlarm, setAudioAlarm] = useState(false)
 
   useEffect(() => {
     socket.on('connection', () => {
@@ -107,14 +110,20 @@ function App() {
       args
     ])
 
+    setAudioAlarm(true)
+    setTimeout(() => {
+      setAudioAlarm(false)
+    }, 1000)
+    // setAudioAlarm(false)
+
     setAlert(args)
     if (soldOut.length > 0) {
       MySwal.fire({
-        title: '¡NUEVO AGOTADO!',
-        text: `${args.productName} está agotado en ${places[args.place]}`,
+        title: `¡NUEVO AGOTADO! ${args.place.toUpperCase()}`,
+        text: `${args.productName} está agotado en ${args.place}`,
         icon: 'error',
         iconColor: 'white',
-        timer: 4000,
+        timer: 30000,
         showConfirmButton: false,
         background: '#BA080D',
         color: 'white',
@@ -131,11 +140,11 @@ function App() {
     setAlert(args)
     if (soldOut.length > 0) {
       MySwal.fire({
-        title: '¡NUEVO SUGERIDO!',
+        title: `¡NUEVO SUGERIDO! EN ${args.place.toUpperCase()}`,
         text: `${args.productName} es sugerido en ${args.place}`,
         icon: 'success',
         iconColor: 'white',
-        timer: 4000,
+        timer: 30000,
         showConfirmButton: false,
         background: '#0E9528',
         color: 'white',
@@ -146,7 +155,6 @@ function App() {
 
 
   socket.on('stock_cc_soldout_remove', (args) => {
-    console.log(args)
     const urlSoldOut = 'http://3.93.184.201:8080/api/soldout'
     axios.get(urlSoldOut)
       .then(({ data }) => {
@@ -157,7 +165,6 @@ function App() {
   })
 
   socket.on('stock_cc_suggest_remove', (args) => {
-    console.log(args)
     const urlSuggest = 'http://3.93.184.201:8080/api/suggest'
     axios.get(urlSuggest)
       .then(({ data }) => {
@@ -169,15 +176,17 @@ function App() {
 
   return (
     <div >
-
-      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })}>Circunvalar</button>
-      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, treinta: !viewPDV.treinta })}>Av 30 de Agosto</button>
-      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, cerritos: !viewPDV.cerritos })}>Cerritos</button>
-      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, arboleda: !viewPDV.arboleda })}>Arboleda</button>
-      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, victoria: !viewPDV.victoria })}>Victoria</button>
-      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, manizales: !viewPDV.manizales })}>Manizales</button>
-      <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, unicentro: !viewPDV.unicentro })}>Unicentro</button>
-
+      <div className='conteSelectPDV'>
+        <SoundButton audioAlarm={audioAlarm} />
+        <audio src='./assets/sound/alert.ogg' autoPlay={true} loop={true} controls={false} volume={1} />
+        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })}>Circunvalar</button>
+        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, treinta: !viewPDV.treinta })}>Av 30 de Agosto</button>
+        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, cerritos: !viewPDV.cerritos })}>Cerritos</button>
+        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, arboleda: !viewPDV.arboleda })}>Arboleda</button>
+        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, victoria: !viewPDV.victoria })}>Victoria</button>
+        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, manizales: !viewPDV.manizales })}>Manizales</button>
+        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, unicentro: !viewPDV.unicentro })}>Unicentro</button>
+      </div>
       <div className='cardContend'>
         {viewPDV.circunvalar && <Circunvalar place={'circunvalar'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
         {viewPDV.treinta && <AvTreintaAgosto place={'treinta'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}

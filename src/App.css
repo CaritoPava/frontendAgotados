@@ -2,9 +2,11 @@
   font-size: 1.3vw;
 }
 
-/* body {
+body {
   overflow-x: hidden;
-} */
+  margin: 0;
+  padding: 0;
+}
 
 .cardContend {
   width: 100%;
@@ -45,10 +47,10 @@
 }
 
 .btnSelectPDV {
-  background-color: var(--barbecue);
+  background-color: transparent;
   border-radius: 5px;
   width: auto;
-  margin: 5px;
+  margin: 10px;
   height: auto;
   padding: 5px;
   border: none;
@@ -58,7 +60,16 @@
 }
 
 .btnSelectPDV:hover {
-  background-color: rgb(80, 218, 25);
+  text-decoration: underline;
   color: white;
   transform: translateY(3px)
+}
+
+.conteSelectPDV {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  background-color: var(--barbecue);
 }
