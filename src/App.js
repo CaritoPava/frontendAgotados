@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import styled from "styled-components";
 import axios from 'axios'
-import ReactAudioPlayer from 'react-audio-player';
 
 import { AvTreintaAgosto } from './components/cardsPDV/AvTreintaAgosto';
 import { Circunvalar } from './components/cardsPDV/Circunvalar';
