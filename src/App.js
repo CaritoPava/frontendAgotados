@@ -111,7 +111,7 @@ function App() {
     setAudioAlarm(true)
     setTimeout(() => {
       setAudioAlarm(false)
-    }, 5000)
+    }, 10000)
     // setAudioAlarm(false)
 
     setAlert(args)
