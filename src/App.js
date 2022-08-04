@@ -111,7 +111,7 @@ function App() {
     setAudioAlarm(true)
     setTimeout(() => {
       setAudioAlarm(false)
-    }, 1000)
+    }, 5000)
     // setAudioAlarm(false)
 
     setAlert(args)
@@ -121,7 +121,7 @@ function App() {
         text: `${args.productName} está agotado en ${args.place}`,
         icon: 'error',
         iconColor: 'white',
-        timer: 30000,
+        timer: 20000,
         showConfirmButton: false,
         background: '#BA080D',
         color: 'white',
@@ -142,7 +142,7 @@ function App() {
         text: `${args.productName} es sugerido en ${args.place}`,
         icon: 'success',
         iconColor: 'white',
-        timer: 30000,
+        timer: 20000,
         showConfirmButton: false,
         background: '#0E9528',
         color: 'white',
@@ -175,7 +175,7 @@ function App() {
   return (
     <div >
       <div className='conteSelectPDV'>
-        <SoundButton audioAlarm={audioAlarm} />
+        <img src={require('./assets/blanco.png')} alt='logo' className='logoSayo' />
         <audio src='./assets/sound/alert.ogg' autoPlay={true} loop={true} controls={false} volume={1} />
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })}>Circunvalar</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, treinta: !viewPDV.treinta })}>Av 30 de Agosto</button>
@@ -184,6 +184,7 @@ function App() {
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, victoria: !viewPDV.victoria })}>Victoria</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, manizales: !viewPDV.manizales })}>Manizales</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, unicentro: !viewPDV.unicentro })}>Unicentro</button>
+        <SoundButton audioAlarm={audioAlarm} />
       </div>
       <div className='cardContend'>
         {viewPDV.circunvalar && <Circunvalar place={'circunvalar'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}

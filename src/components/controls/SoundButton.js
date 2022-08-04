@@ -14,10 +14,6 @@ export const SoundButton = ({ audioAlarm }) => {
         }} ><BsBell /></p> : <p onClick={() => {
           setActiveSound(!activeSound)
         }}><BsBellSlash /></p>}
-        {/* <button className={styles.soundButton} onClick={() => {
-        setActiveSound(!activeSound)
-      }}
-      /> */}
         {(audioAlarm && activeSound) && <audio autoPlay={true} src={require('../../assets/sound/alert.mp3')} />}
       </IconContext.Provider>
     </div>

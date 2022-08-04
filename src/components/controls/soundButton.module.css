@@ -33,14 +33,14 @@
 
 .conteButtonBell {
   display: flex;
-  align-items: center;
-  font-size: 4rem;
-  color: white
+  font-size: 3rem;
+  color: white;
+  padding-left: 100px;
 }
 
 
 .reacticons {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
 }

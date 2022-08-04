@@ -70,6 +70,13 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 5px;
   background-color: var(--barbecue);
+  height: 2rem;
+}
+
+.logoSayo {
+  width: auto;
+  height: 290px;
+  margin: 0;
+  margin-right: 3.5rem;
 }
