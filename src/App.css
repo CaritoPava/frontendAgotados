@@ -3,7 +3,7 @@
 }
 
 body {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   margin: 0;
   padding: 0;
 }
@@ -15,7 +15,7 @@ body {
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .cardCircunavalar {
@@ -76,7 +76,7 @@ body {
 
 .logoSayo {
   width: auto;
-  height: 290px;
+  height: 100px;
   margin: 0;
   margin-right: 3.5rem;
 }

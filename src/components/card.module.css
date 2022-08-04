@@ -2,10 +2,10 @@
   background-color: white;
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 20vw;
+  width: 18rem;
   margin: 10px;
   height: auto;
-  padding: 10px;
+  padding: 2px;
   /* overflow: hidden */
 }
 
@@ -13,60 +13,60 @@
   background-color: var(--menta);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 20vw;
+  width: 18rem;
   margin: 10px;
   height: auto;
-  padding: 10px;
+  padding: 2px;
 }
 
 .contendCard3 {
   background-color: var(--naranjaClaro);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 20vw;
+  width: 18rem;
   margin: 10px;
   height: auto;
-  padding: 10px;
+  padding: 2px;
 }
 
 .contendCard4 {
   background-color: var(--barbecue);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 20vw;
+  width: 18rem;
   margin: 10px;
   height: auto;
-  padding: 10px;
+  padding: 2px;
 }
 
 .contendCard5 {
   background-color: var(--azulBrillante);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 20vw;
+  width: 18rem;
   margin: 10px;
   height: auto;
-  padding: 10px;
+  padding: 2px;
 }
 
 .contendCard6 {
   background-color: var(--rojoSayonara);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 20vw;
+  width: 18rem;
   margin: 10px;
   height: auto;
-  padding: 10px;
+  padding: 2px;
 }
 
 .contendCard7 {
   background-color: var(--amarillo);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 20vw;
+  width: 18rem;
   margin: 10px;
   height: auto;
-  padding: 10px;
+  padding: 2px;
 }
 
 .namePDV {
