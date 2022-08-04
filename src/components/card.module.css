@@ -2,7 +2,7 @@
   background-color: white;
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 18rem;
+  width: 24vmax;
   margin: 10px;
   height: auto;
   padding: 2px;
@@ -13,7 +13,7 @@
   background-color: var(--menta);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 18rem;
+  width: 24vmax;
   margin: 10px;
   height: auto;
   padding: 2px;
@@ -23,7 +23,7 @@
   background-color: var(--naranjaClaro);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 18rem;
+  width: 24vmax;
   margin: 10px;
   height: auto;
   padding: 2px;
@@ -33,7 +33,7 @@
   background-color: var(--barbecue);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 18rem;
+  width: 24vmax;
   margin: 10px;
   height: auto;
   padding: 2px;
@@ -43,7 +43,7 @@
   background-color: var(--azulBrillante);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 18rem;
+  width: 24vmax;
   margin: 10px;
   height: auto;
   padding: 2px;
@@ -53,7 +53,7 @@
   background-color: var(--rojoSayonara);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 18rem;
+  width: 24vmax;
   margin: 10px;
   height: auto;
   padding: 2px;
@@ -63,7 +63,7 @@
   background-color: var(--amarillo);
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  width: 18rem;
+  width: 24vmax;
   margin: 10px;
   height: auto;
   padding: 2px;
