@@ -41,7 +41,7 @@ function App() {
   const [soldOut, setSoldout] = useState([])
   const [suggest, setSuggest] = useState([])
   const [alert, setAlert] = useState("")
-  const [color, setColor] = useState(false)
+  const [reloadAPI, setReloadAPI] = useState(false)
   const [viewPDV, setViewPDV] = useState({
     circunvalar: false,
     treinta: false,
@@ -53,6 +53,7 @@ function App() {
     armenia: false
   })
   const [audioAlarm, setAudioAlarm] = useState(false)
+
 
   useEffect(() => {
     socket.on('connection', () => {
@@ -156,7 +157,18 @@ function App() {
   })
 
 
-  socket.on('stock_cc_soldout_remove', (args) => {
+  // socket.on('stock_cc_soldout_remove', (args) => {
+  //   const urlSoldOut = 'http://3.93.184.201:8080/api/soldout'
+  //   axios.get(urlSoldOut)
+  //     .then(({ data }) => {
+  //       setSoldout(data.message)
+  //     }
+  //     )
+  //     .catch(err => console.log(err))
+  // })
+
+  useEffect(() => {
+
     const urlSoldOut = 'http://3.93.184.201:8080/api/soldout'
     axios.get(urlSoldOut)
       .then(({ data }) => {
@@ -164,9 +176,7 @@ function App() {
       }
       )
       .catch(err => console.log(err))
-  })
 
-  socket.on('stock_cc_suggest_remove', (args) => {
     const urlSuggest = 'http://3.93.184.201:8080/api/suggest'
     axios.get(urlSuggest)
       .then(({ data }) => {
@@ -174,7 +184,20 @@ function App() {
       }
       )
       .catch(err => console.log(err))
+
+  }, [reloadAPI])
+
+
+
+  socket.on('stock_cc_soldout_remove', (args) => {
+    setReloadAPI(!reloadAPI)
   })
+
+  socket.on('stock_cc_suggest_remove', (args) => {
+    setReloadAPI(!reloadAPI)
+  })
+
+
 
   return (
     <div >
