@@ -179,7 +179,7 @@ function App() {
   return (
     <div >
       <div className='conteSelectPDV'>
-        <img src={require('./assets/blanco.png')} alt='logo' className='logoSayo' />
+        {/* <img src={require('./assets/blanco.png')} alt='logo' className='logoSayo' /> */}
         <audio src='./assets/sound/alert.wav' autoPlay={true} loop={true} controls={false} volume={1} />
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })}>Circunvalar</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, treinta: !viewPDV.treinta })}>Av 30 de Agosto</button>
