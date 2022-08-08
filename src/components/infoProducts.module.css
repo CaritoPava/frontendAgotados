@@ -1,13 +1,36 @@
 .conteListProducts {
   display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border-radius: 15px;
 
 }
+
+.conteProductsSoldOut {
+  margin-top: 5px;
+  /* background-color: rgba(112, 13, 13, 0.196); */
+  border-radius: 15px;
+  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  margin: 5px;
+  background-color: white;
+}
+
 
 .conteListProducts p {
   font-size: 1.8vw;
   text-transform: lowercase;
   line-height: 35px;
   margin: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* .conteListProducts p:nth-last-child(odd) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+} */
+
+.conteListProducts p:nth-last-child(1) {
+  border-bottom: none;
+
 }
 
 .productsSoldOut {
@@ -19,8 +42,12 @@
 .productsSuggest {
   /* background-color: rgba(39, 239, 65, 0.236); */
   text-align: left;
+  border-radius: 15px;
+  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  margin: 5px;
 
 }
+
 
 .conteProducts {
   width: 45%;

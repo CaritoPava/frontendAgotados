@@ -9,46 +9,50 @@
 .contePromise {
   display: flex;
   justify-content: space-around;
-  background-color: var(--barbecue);
+  background-color: rgba(67, 230, 124, 0.448);
   border-radius: 20px;
   align-items: center;
   width: 50%;
   font-size: 3vw;
-  margin: 0px 10px;
+  margin: 0px 5px;
+  padding: 0;
 }
 
 .contePromise2 {
   display: flex;
   justify-content: space-between;
-  background-color: var(--green);
+  background-color: rgba(5, 149, 5, 0.48);
   border-radius: 20px;
   align-items: center;
   width: 50%;
   font-size: 3vw;
+  margin: 0px 5px;
 }
 
 .contePromise3 {
   display: flex;
   justify-content: space-between;
-  background-color: var(--amarillo);
+  background-color: rgba(255, 255, 0, 0.426);
   border-radius: 20px;
   align-items: center;
   width: 50%;
   font-size: 3vw;
+  margin: 0px 5px;
 }
 
 .contePromise4 {
   display: flex;
   justify-content: space-around;
-  background-color: var(--rojoSayonara);
+  background-color: rgba(255, 0, 0, 0.426);
   border-radius: 20px;
   align-items: center;
   width: 50%;
   font-size: 3vw;
+  margin: 0px 5px;
 }
 
 .reacticons {
-  font-size: 3vw;
+  font-size: 2vw;
   color: white
 }
 
@@ -56,7 +60,7 @@
 .contePromise p {
   padding: 5px;
   margin: 5px;
-  color: white
+
 }
 
 .contePromise h3 {

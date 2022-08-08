@@ -1,7 +1,7 @@
 import styles from './infoDeliveryPromise.module.css'
-import { FaMotorcycle } from 'react-icons/fa'
+import { FcAlarmClock } from 'react-icons/fc'
 import { IconContext } from 'react-icons'
-import { FaHamburger } from 'react-icons/fa'
+import { FcShop } from 'react-icons/fc'
 
 export const InfoDeliveryPromise = ({ place, infoPlaces }) => {
 
@@ -24,24 +24,24 @@ export const InfoDeliveryPromise = ({ place, infoPlaces }) => {
           {
             promes <= 45 ?
               <div className={styles.contePromise}>
-                <p><FaMotorcycle /></p>
-                {/* <p>{promes}</p> */}
+                <p><FcAlarmClock /></p>
+                <p>{promes}</p>
               </div>
               :
               promes >= 80 ?
                 <div className={styles.contePromise4}>
-                  <p><FaMotorcycle /></p>
-                  {/* <p>{promes}</p> */}
+                  <p><FcAlarmClock /></p>
+                  <p>{promes}</p>
                 </div>
                 :
                 <div className={styles.contePromise3}>
-                  <p><FaMotorcycle /></p>
-                  {/* <p>{promes}</p> */}
+                  <p><FcAlarmClock /></p>
+                  <p>{promes}</p>
                 </div>
           }
           <div className={styles.contePromise}>
-            <p><FaHamburger /></p>
-            {/* <p>40</p> */}
+            <p><FcShop /></p>
+            <p>00</p>
           </div>
         </IconContext.Provider>
       </div>

@@ -6,6 +6,7 @@ body {
   /* overflow-x: hidden; */
   margin: 0;
   padding: 0;
+  background-color: #f2fdff8a;
 }
 
 .cardContend {
@@ -15,6 +16,7 @@ body {
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
+
   /* flex-wrap: wrap; */
 }
 
@@ -65,14 +67,14 @@ body {
   transform: translateY(3px)
 }
 
-.conteSelectPDV {
+/* .conteSelectPDV {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   background-color: var(--barbecue);
   height: 2rem;
-}
+} */
 
 .logoSayo {
   width: auto;

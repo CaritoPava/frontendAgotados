@@ -32,15 +32,38 @@
 }
 
 .conteButtonBell {
-  display: flex;
-  font-size: 3rem;
+
   color: white;
-  padding-left: 100px;
+  /* background-color: var(--barbecue); */
+  /* padding: 2px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px; */
+  position: fixed;
+  top: 90%;
+  left: 97%;
+  /* top: 1%; */
 }
 
-
 .reacticons {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--barbecue);
+  padding: 10px;
+  top: 90%;
+  left: 97%;
+  position: fixed;
+  transition: all;
+  z-index: 1;
+}
+
+.reacticons:hover {
+  background-color: rgb(164, 41, 41);
 }

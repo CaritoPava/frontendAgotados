@@ -1,7 +1,4 @@
 .contendCard1 {
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
   min-width: auto;
   margin: 10px;
   height: auto;
@@ -9,114 +6,108 @@
   /* overflow: hidden */
 }
 
-.contendCard2 {
-  background-color: var(--menta);
+.contendInfoPDV {
+  background-color: white;
   border-radius: 15px;
   box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  min-width: auto;
-  margin: 10px;
-  height: auto;
-  padding: 2px;
-}
-
-.contendCard3 {
-  background-color: var(--naranjaClaro);
-  border-radius: 15px;
-  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  min-width: auto;
-  margin: 10px;
-  height: auto;
-  padding: 2px;
-}
-
-.contendCard4 {
-  background-color: var(--barbecue);
-  border-radius: 15px;
-  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  min-width: auto;
-  margin: 10px;
-  height: auto;
-  padding: 2px;
-}
-
-.contendCard5 {
-  background-color: var(--azulBrillante);
-  border-radius: 15px;
-  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  min-width: auto;
-  margin: 10px;
-  height: auto;
-  padding: 2px;
-}
-
-.contendCard6 {
-  background-color: var(--rojoSayonara);
-  border-radius: 15px;
-  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  min-width: auto;
-  margin: 10px;
-  height: auto;
-  padding: 2px;
-}
-
-.contendCard7 {
-  background-color: var(--amarillo);
-  border-radius: 15px;
-  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
-  min-width: auto;
-  margin: 10px;
-  height: auto;
-  padding: 2px;
+  margin: 5px;
+  padding-bottom: 5px;
 }
 
 .namePDV {
   text-align: center;
   font-size: 1.3rem;
   background-color: var(--amarillo);
+  margin: 5px;
+  padding: 0;
+  margin: 5px 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
 }
 
 .namePDV2 {
   text-align: center;
   font-size: 1.3rem;
   background-color: var(--rojoSayonara);
-  color: white
+  color: white;
+  margin: 5px;
+  padding: 0;
+  margin: 5px 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
 }
 
 .namePDV3 {
   text-align: center;
   font-size: 1.3rem;
   background-color: var(--barbecue);
-  color: white
+  color: white;
+  padding: 0;
+  margin: 5px 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
 }
 
 .namePDV4 {
   text-align: center;
   font-size: 1.3rem;
   background-color: var(--azulBrillante);
+  margin: 5px;
+  padding: 0;
+  margin: 5px 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
 }
 
 .namePDV5 {
   text-align: center;
   font-size: 1.3rem;
   background-color: var(--naranjaClaro);
+  margin: 5px;
+  padding: 0;
+  margin: 5px 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
 }
 
 .namePDV6 {
   text-align: center;
   font-size: 1.3rem;
   background-color: var(--menta);
+  margin: 5px;
+  padding: 0;
+  margin: 5px 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .namePDV6 {
   text-align: center;
   font-size: 1.3rem;
   background-color: var(--naranja);
-  color: white
+  color: white;
+  margin: 5px;
+  padding: 0;
+  margin: 5px 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
 }
 
 .namePDV7 {
   text-align: center;
   font-size: 1.3rem;
   background-color: var(--green);
-  color: white
+  color: white;
+  margin: 5px;
+  padding: 0;
+  margin: 5px 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
 }

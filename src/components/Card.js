@@ -26,8 +26,10 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           <div
             className={styles.contendCard1}
           >
-            <h2 className={styles.namePDV} >{places[place]}</h2>
-            <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            <div className={styles.contendInfoPDV}>
+              <h2 className={styles.namePDV} >{places[place]}</h2>
+              <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            </div>
             <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />
           </div>
           :
@@ -39,8 +41,10 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           <div
             className={styles.contendCard1}
           >
-            <h2 className={styles.namePDV2} >{places[place]}</h2>
-            <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            <div className={styles.contendInfoPDV}>
+              <h2 className={styles.namePDV2} >{places[place]}</h2>
+              <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            </div>
             <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />
           </div>
           :
@@ -52,8 +56,10 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           <div
             className={styles.contendCard1}
           >
-            <h2 className={styles.namePDV3} >{places[place]}</h2>
-            <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            <div className={styles.contendInfoPDV}>
+              <h2 className={styles.namePDV3} >{places[place]}</h2>
+              <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            </div>
             <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />
           </div>
           :
@@ -65,8 +71,10 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           <div
             className={styles.contendCard1}
           >
-            <h2 className={styles.namePDV4} >{places[place]}</h2>
-            <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            <div className={styles.contendInfoPDV}>
+              <h2 className={styles.namePDV4} >{places[place]}</h2>
+              <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            </div>
             <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />
           </div>
           :
@@ -78,8 +86,10 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           <div
             className={styles.contendCard1}
           >
-            <h2 className={styles.namePDV5} >{places[place]}</h2>
-            <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            <div className={styles.contendInfoPDV}>
+              <h2 className={styles.namePDV5} >{places[place]}</h2>
+              <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            </div>
             <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />
           </div>
           :
@@ -91,8 +101,10 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           <div
             className={styles.contendCard1}
           >
-            <h2 className={styles.namePDV6} >{places[place]}</h2>
-            <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            <div className={styles.contendInfoPDV}>
+              <h2 className={styles.namePDV6} >{places[place]}</h2>
+              <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            </div>
             <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />
           </div>
           :
@@ -104,8 +116,10 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           <div
             className={styles.contendCard1}
           >
-            <h2 className={styles.namePDV7} >{places[place]}</h2>
-            <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            <div className={styles.contendInfoPDV}>
+              <h2 className={styles.namePDV7} >{places[place]}</h2>
+              <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} />
+            </div>
             <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />
           </div>
           :

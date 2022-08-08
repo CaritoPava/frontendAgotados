@@ -14,6 +14,9 @@ import { Unicentro } from './components/cardsPDV/Unicentro';
 import { Manizales } from './components/cardsPDV/Manizales';
 import { Arboleda } from './components/cardsPDV/Arboleda';
 import { SoundButton } from './components/controls/SoundButton';
+import { getSoldOut } from './helpers/getSoldOut';
+import { getSuggest } from './helpers/getSuggest';
+import { Loading } from './components/Loading';
 
 const socket = io('http://3.93.184.201:9000', {
   query: {
@@ -75,20 +78,24 @@ function App() {
         })
         .catch(err => console.log(err))
 
-      axios.get(urlSoldOut)
-        .then(({ data }) => {
-          setSoldout(data.message)
+      getSoldOut()
+        .then(response => {
+          setSoldout(response)
         }
         )
         .catch(err => console.log(err))
 
-      axios.get(urlSuggest)
-        .then(({ data }) => setSuggest(data.message))
+      getSuggest()
+        .then(response => {
+          setSuggest(response)
+        }
+        )
         .catch(err => console.log(err))
 
     } catch (error) {
       console.log(error)
     }
+
 
     return () => {
       socket.off('connect')
@@ -169,18 +176,16 @@ function App() {
 
   useEffect(() => {
 
-    const urlSoldOut = 'http://3.93.184.201:8080/api/soldout'
-    axios.get(urlSoldOut)
-      .then(({ data }) => {
-        setSoldout(data.message)
+    getSoldOut()
+      .then(response => {
+        setSoldout(response)
       }
       )
       .catch(err => console.log(err))
 
-    const urlSuggest = 'http://3.93.184.201:8080/api/suggest'
-    axios.get(urlSuggest)
-      .then(({ data }) => {
-        setSuggest(data.message)
+    getSuggest()
+      .then(response => {
+        setSuggest(response)
       }
       )
       .catch(err => console.log(err))
@@ -197,31 +202,41 @@ function App() {
     setReloadAPI(!reloadAPI)
   })
 
-
+  const isCircunvalar = soldOut.find(soldOut => soldOut.place === 'circunvalar') || suggest.find(suggest => suggest.place === 'circunvalar')
+  const isTreinta = soldOut.find(soldOut => soldOut.place === 'treinta') || suggest.find(suggest => suggest.place === 'treinta')
+  const isCerritos = soldOut.find(soldOut => soldOut.place === 'cerritos') || suggest.find(suggest => suggest.place === 'cerritos')
+  const isArboleda = soldOut.find(soldOut => soldOut.place === 'arboleda') || suggest.find(suggest => suggest.place === 'arboleda')
+  const isVictoria = soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')
+  const isManizales = soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')
+  const isUnicentro = soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')
 
   return (
     <div >
       <div className='conteSelectPDV'>
         {/* <img src={require('./assets/blanco.png')} alt='logo' className='logoSayo' /> */}
         <audio src='./assets/sound/alert.wav' autoPlay={true} loop={true} controls={false} volume={1} />
-        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })}>Circunvalar</button>
+        {/* <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })}>Circunvalar</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, treinta: !viewPDV.treinta })}>Av 30 de Agosto</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, cerritos: !viewPDV.cerritos })}>Cerritos</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, arboleda: !viewPDV.arboleda })}>Arboleda</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, victoria: !viewPDV.victoria })}>Victoria</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, manizales: !viewPDV.manizales })}>Manizales</button>
-        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, unicentro: !viewPDV.unicentro })}>Unicentro</button>
+        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, unicentro: !viewPDV.unicentro })}>Unicentro</button> */}
         <SoundButton audioAlarm={audioAlarm} />
       </div>
-      <div className='cardContend'>
-        {viewPDV.circunvalar && <Circunvalar place={'circunvalar'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-        {viewPDV.treinta && <AvTreintaAgosto place={'treinta'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-        {viewPDV.cerritos && <Cerritos place={'cerritos'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-        {viewPDV.arboleda && <Arboleda place={'arboleda'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-        {viewPDV.victoria && <CiudadVictoria place={'victoria'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-        {viewPDV.manizales && <Manizales place={'manizales'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-        {viewPDV.unicentro && <Unicentro place={'unicentro'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-      </div>
+      {
+        (soldOut.length > 0 || suggest.length > 0) ?
+          <div className='cardContend'>
+            {isCircunvalar && <Circunvalar place={'circunvalar'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+            {isTreinta && <AvTreintaAgosto place={'treinta'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+            {isCerritos && <Cerritos place={'cerritos'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+            {isArboleda && <Arboleda place={'arboleda'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+            {isVictoria && <CiudadVictoria place={'victoria'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+            {isManizales && <Manizales place={'manizales'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+            {isUnicentro && <Unicentro place={'unicentro'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+          </div> :
+          <Loading />
+      }
     </div>
   );
 }
