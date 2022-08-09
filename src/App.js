@@ -26,16 +26,6 @@ const socket = io('http://44.208.37.247:9000', {
   }
 })
 
-const places = {
-  circunvalar: "CIRCUNVALAR",
-  treinta: "AV 30 DE AGOSTO",
-  cerritos: "P DE CERRITOS",
-  arboleda: "PARQUE ARBOLEDA",
-  victoria: "CIUDAD VICTORIA",
-  manizales: "MANIZALES",
-  unicentro: "UNICENTRO",
-  armenia: "ARMENIA"
-}
 
 const MySwal = withReactContent(Swal)
 
@@ -58,7 +48,18 @@ function App() {
     armenia: false
   })
   const [audioAlarm, setAudioAlarm] = useState(false)
-  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isButtonSelected, setIsButtonSelected] = useState({
+    circunvalar: false,
+    treinta: false,
+    cerritos: false,
+    arboleda: false,
+    victoria: false,
+    manizales: false,
+    unicentro: false,
+    armenia: false
+  })
+
+  const [isPDVSelected, setIsPDVSelected] = useState(false)
 
 
   useEffect(() => {
@@ -204,14 +205,44 @@ function App() {
     setReloadAPI(!reloadAPI)
   })
 
-  const isCircunvalar = soldOut.find(soldOut => soldOut.place === 'circunvalar') || suggest.find(suggest => suggest.place === 'circunvalar')
-  const isTreinta = soldOut.find(soldOut => soldOut.place === 'treinta') || suggest.find(suggest => suggest.place === 'treinta')
-  const isCerritos = soldOut.find(soldOut => soldOut.place === 'cerritos') || suggest.find(suggest => suggest.place === 'cerritos')
-  const isArboleda = soldOut.find(soldOut => soldOut.place === 'arboleda') || suggest.find(suggest => suggest.place === 'arboleda')
-  const isVictoria = soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')
-  const isManizales = soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')
-  const isUnicentro = soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')
+  const isCircunvalar = (soldOut.find(soldOut => soldOut.place === 'circunvalar') || suggest.find(suggest => suggest.place === 'circunvalar')) && isButtonSelected.circunvalar
+  const isTreinta = (soldOut.find(soldOut => soldOut.place === 'treinta') || suggest.find(suggest => suggest.place === 'treinta')) && isButtonSelected.treinta
+  const isCerritos = (soldOut.find(soldOut => soldOut.place === 'cerritos') || suggest.find(suggest => suggest.place === 'cerritos')) && isButtonSelected.cerritos
+  const isArboleda = (soldOut.find(soldOut => soldOut.place === 'arboleda') || suggest.find(suggest => suggest.place === 'arboleda')) && isButtonSelected.arboleda
+  const isVictoria = (soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')) && isButtonSelected.victoria
+  const isManizales = (soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')) && isButtonSelected.manizales
+  const isUnicentro = (soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')) && isButtonSelected.unicentro
   console.log(viewPDV)
+  console.log(isButtonSelected)
+
+  const handleViewPDV = (place) => {
+    setViewPDV({
+      ...viewPDV,
+      [place]: !viewPDV[place]
+    })
+    setIsButtonSelected({
+      ...viewPDV,
+      [place]: !isButtonSelected[place]
+    })
+  }
+
+  useEffect(() => {
+    let isAnyButtonSelected = 0
+    for (const place in isButtonSelected) {
+      if (isButtonSelected[place]) {
+        isAnyButtonSelected += 1
+      }
+    }
+    if (isAnyButtonSelected === 0) {
+      setIsPDVSelected(false)
+    }
+    else {
+      setIsPDVSelected(true)
+    }
+  }, [isButtonSelected])
+
+
+
 
 
   return (
@@ -227,10 +258,10 @@ function App() {
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, manizales: !viewPDV.manizales })}>Manizales</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, unicentro: !viewPDV.unicentro })}>Unicentro</button> */}
         <SoundButton audioAlarm={audioAlarm} />
-        <SelectPDV setViewPDV={setViewPDV} viewPDV={viewPDV} onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })} />
+        <SelectPDV setViewPDV={setViewPDV} viewPDV={viewPDV} handleViewPDV={handleViewPDV} isButtonSelected={isButtonSelected} setIsButtonSelected={setIsButtonSelected} />
       </div>
       {
-        (soldOut.length > 0 || suggest.length > 0) ?
+        (soldOut.length > 0 || suggest.length > 0) && isPDVSelected ?
           <div className='cardContend'>
             {isCircunvalar && <Circunvalar place={'circunvalar'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
             {isTreinta && <AvTreintaAgosto place={'treinta'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}

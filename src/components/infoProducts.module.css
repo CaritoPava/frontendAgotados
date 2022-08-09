@@ -10,9 +10,10 @@
   margin-top: 5px;
   /* background-color: rgba(112, 13, 13, 0.196); */
   border-radius: 15px;
-  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  box-shadow: 10px 10px 30px -14px rgb(91, 3, 3);
   margin: 5px;
   background-color: white;
+  border: 2px solid red;
 }
 
 
@@ -24,9 +25,15 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-/* .conteListProducts p:nth-last-child(odd) {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-} */
+.conteProductsSuggest {
+  margin-top: 5px;
+  /* background-color: rgba(112, 13, 13, 0.196); */
+  border-radius: 15px;
+  box-shadow: 10px 10px 30px -14px rgb(3, 83, 2);
+  margin: 5px;
+  background-color: white;
+  border: 2px solid green;
+}
 
 .conteListProducts p:nth-last-child(1) {
   border-bottom: none;

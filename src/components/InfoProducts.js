@@ -15,11 +15,9 @@ export const InfoProducts = ({ place, soldOut, suggest }) => {
               return <p key={idx} > {product.productName}</p>
             }
           })
-
         }
       </div>
-      <div className={styles.conteProductsSoldOut}>
-
+      <div className={styles.conteProductsSuggest}>
         {
 
           suggest.map((product, idx) => {

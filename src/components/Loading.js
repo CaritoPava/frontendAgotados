@@ -5,7 +5,7 @@ export const Loading = () => {
   return (
     <div className={styles.contentNotSoldout}>
       <img src={imagen} className={styles.imgNotSoldout} />
-      <h1 className={styles.textNotSoldout}>No tenemos productos agotados o sugeridos ...</h1>
+      <h1 className={styles.textNotSoldout}>No tenemos productos agotados o sugeridos ... o no has seleccionado puntos de venta</h1>
     </div>
   )
 }

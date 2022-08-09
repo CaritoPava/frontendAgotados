@@ -5,7 +5,7 @@ import img from '../assets/2085.jpg'
 import { ButtonConfirm, ButtonSelect, ContendButton, ImgModal, ModalIcon, ModalTitle } from './modalStyled'
 
 
-export const SelectPDV = ({ setViewPDV, viewPDV, onClick }) => {
+export const SelectPDV = ({ setViewPDV, viewPDV, handleViewPDV, isButtonSelected, setIsBUttonSelecte }) => {
   console.log(viewPDV, "viewPDV")
 
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -21,21 +21,19 @@ export const SelectPDV = ({ setViewPDV, viewPDV, onClick }) => {
       </h6>
       {isModalVisible && (
         <BasicModal
-          onClose={handleDisplayModal}
           isVisible={isModalVisible}
+          onClose={handleDisplayModal}
         >
           <ModalTitle>SELECCIONA LOS PUNTOS DE VENTA QUE DESEAS VER</ModalTitle>
           <ContendButton>
             <ImgModal src={img} alt="" />
-
-            <ButtonSelect onClick={onClick}>Circunvalar</ButtonSelect>
-            <ButtonSelect>Av 30 de Agosto</ButtonSelect>
-            <ButtonSelect>Portal de Cerritos</ButtonSelect>
-            <ButtonSelect>Ciudad Victoria</ButtonSelect>
-            <ButtonSelect>Unicentro</ButtonSelect>
-            <ButtonSelect>Mall Plaza (Manizales)</ButtonSelect>
-            <ButtonSelect>Parque Arboleda</ButtonSelect>
-            <ButtonConfirm>Confirmar</ButtonConfirm>
+            <ButtonSelect isButtonSelected={isButtonSelected.circunvalar} onClick={() => handleViewPDV('circunvalar')}>Circunvalar</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.treinta} onClick={() => handleViewPDV('treinta')}>Av 30 de Agosto</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.cerritos} onClick={() => handleViewPDV('cerritos')}>Portal de Cerritos</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.victoria} onClick={() => handleViewPDV('victoria')}>Ciudad Victoria</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.unicentro} onClick={() => handleViewPDV('unicentro')}>Unicentro</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.manizales} onClick={() => handleViewPDV('manizales')}>Mall Plaza (Manizales)</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.arboleda} onClick={() => handleViewPDV('arboleda')}>Parque Arboleda</ButtonSelect>
           </ContendButton>
 
 

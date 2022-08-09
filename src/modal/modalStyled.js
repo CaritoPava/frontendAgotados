@@ -59,7 +59,7 @@ export const ModalIcon = styled.div`
 export const ButtonSelect = styled.button`
   width:50%;
   height: 40px;
-  background-color: #1e7686;
+  background-color:${(props) => (props.isButtonSelected ? "green" : "#1e7686")};
   color: white;
   border: none;
   border-radius: 5px;
