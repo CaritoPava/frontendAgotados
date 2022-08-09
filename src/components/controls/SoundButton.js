@@ -14,7 +14,7 @@ export const SoundButton = ({ audioAlarm }) => {
         }} ><BsBell /></p> : <p onClick={() => {
           setActiveSound(!activeSound)
         }}><BsBellSlash /></p>}
-        {(audioAlarm && activeSound) && <audio autoPlay={true} src={require('../../assets/sound/Phone Alerts And Rings.mp3')} />}
+        {(audioAlarm && activeSound) && <audio autoPlay={true} src={require('../../assets/sound/mixkit-fairy-message-notification-861.wav')} />}
       </IconContext.Provider>
     </div>
   )
