@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const getSuggest = async () => {
-  const urlSuggest = 'http://3.93.184.201:8080/api/suggest'
+  const urlSuggest = 'http://44.208.37.247:8080/api/suggest'
 
   const { data } = await axios.get(urlSuggest)
   const { message } = await data

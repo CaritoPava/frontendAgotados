@@ -17,8 +17,10 @@ import { SoundButton } from './components/controls/SoundButton';
 import { getSoldOut } from './helpers/getSoldOut';
 import { getSuggest } from './helpers/getSuggest';
 import { Loading } from './components/Loading';
+import { SelectPDV } from './modal/SelectPDV';
+import { BasicModal } from './modal/BasicModal';
 
-const socket = io('http://3.93.184.201:9000', {
+const socket = io('http://44.208.37.247:9000', {
   query: {
     alias: 'call center'
   }
@@ -56,6 +58,7 @@ function App() {
     armenia: false
   })
   const [audioAlarm, setAudioAlarm] = useState(false)
+  const [isModalVisible, setIsModalVisible] = useState(false)
 
 
   useEffect(() => {
@@ -67,9 +70,8 @@ function App() {
       setIsConnected(false)
     })
 
-    const urlPlaces = 'http://3.93.184.201:8080/api/places'
-    const urlSoldOut = 'http://3.93.184.201:8080/api/soldout'
-    const urlSuggest = 'http://3.93.184.201:8080/api/suggest'
+    const urlPlaces = 'http://44.208.37.247:8080/api/places'
+
 
     try {
       axios.get(urlPlaces)
@@ -209,6 +211,8 @@ function App() {
   const isVictoria = soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')
   const isManizales = soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')
   const isUnicentro = soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')
+  console.log(viewPDV)
+
 
   return (
     <div >
@@ -223,6 +227,7 @@ function App() {
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, manizales: !viewPDV.manizales })}>Manizales</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, unicentro: !viewPDV.unicentro })}>Unicentro</button> */}
         <SoundButton audioAlarm={audioAlarm} />
+        <SelectPDV setViewPDV={setViewPDV} viewPDV={viewPDV} onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })} />
       </div>
       {
         (soldOut.length > 0 || suggest.length > 0) ?
