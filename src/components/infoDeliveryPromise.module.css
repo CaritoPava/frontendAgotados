@@ -1,9 +1,10 @@
 .contendInfodelivery {
-  margin: 0px 20px;
+  margin: 1px;
   display: flex;
   font-weight: bold;
   align-items: center;
   text-align: center;
+  margin-top: 5px;
 }
 
 .contePromise {
@@ -13,8 +14,7 @@
   border-radius: 20px;
   align-items: center;
   width: 50%;
-  font-size: 3vw;
-  margin: 0px 5px;
+  font-size: 0.8vw;
   padding: 0;
 }
 
@@ -25,8 +25,8 @@
   border-radius: 20px;
   align-items: center;
   width: 50%;
-  font-size: 3vw;
-  margin: 0px 5px;
+  font-size: 0.8vw;
+  margin: 0;
 }
 
 .contePromise3 {
@@ -36,8 +36,8 @@
   border-radius: 20px;
   align-items: center;
   width: 50%;
-  font-size: 3vw;
-  margin: 0px 5px;
+  font-size: 0.8vw;
+  margin: 0;
 }
 
 .contePromise4 {
@@ -47,19 +47,19 @@
   border-radius: 20px;
   align-items: center;
   width: 50%;
-  font-size: 3vw;
-  margin: 0px 5px;
+  font-size: 0.8vw;
+  margin: 0;
 }
 
 .reacticons {
-  font-size: 2vw;
+  font-size: 1.3vw;
   color: white
 }
 
 
 .contePromise p {
-  padding: 5px;
-  margin: 5px;
+  padding: 2px;
+  margin: 2px;
 
 }
 

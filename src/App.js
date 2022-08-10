@@ -18,7 +18,7 @@ import { getSoldOut } from './helpers/getSoldOut';
 import { getSuggest } from './helpers/getSuggest';
 import { Loading } from './components/Loading';
 import { SelectPDV } from './modal/SelectPDV';
-import { BasicModal } from './modal/BasicModal';
+import { BarInfoDelivery } from './BarInfoDelivery';
 
 const socket = io('http://44.208.37.247:9000', {
   query: {
@@ -167,16 +167,6 @@ function App() {
   })
 
 
-  // socket.on('stock_cc_soldout_remove', (args) => {
-  //   const urlSoldOut = 'http://3.93.184.201:8080/api/soldout'
-  //   axios.get(urlSoldOut)
-  //     .then(({ data }) => {
-  //       setSoldout(data.message)
-  //     }
-  //     )
-  //     .catch(err => console.log(err))
-  // })
-
   useEffect(() => {
 
     getSoldOut()
@@ -199,10 +189,49 @@ function App() {
 
   socket.on('stock_cc_soldout_remove', (args) => {
     setReloadAPI(!reloadAPI)
+    setAudioAlarm(true)
+
+    setTimeout(() => {
+      setAudioAlarm(false)
+    }, 10000)
+    // setAudioAlarm(false)
+
+    setAlert(args)
+    if (soldOut.length > 0) {
+      MySwal.fire({
+        title: `¡SE HA ELIMINADO UN ITEM DE AGOTADOS!`,
+        icon: 'success',
+        iconColor: 'white',
+        timer: 20000,
+        showConfirmButton: false,
+        background: 'var(--amarillo)',
+        color: 'white',
+        allowOutsideClick: true,
+      })
+    }
   })
 
   socket.on('stock_cc_suggest_remove', (args) => {
     setReloadAPI(!reloadAPI)
+
+    setTimeout(() => {
+      setAudioAlarm(false)
+    }, 10000)
+    // setAudioAlarm(false)
+
+    setAlert(args)
+    if (soldOut.length > 0) {
+      MySwal.fire({
+        title: `¡SE HA ELIMINADO UN ITEM DE SUGERIDOS!`,
+        icon: 'success',
+        iconColor: 'white',
+        timer: 20000,
+        showConfirmButton: false,
+        background: 'var(--amarillo)',
+        color: 'white',
+        allowOutsideClick: true,
+      })
+    }
   })
 
   const isCircunvalar = (soldOut.find(soldOut => soldOut.place === 'circunvalar') || suggest.find(suggest => suggest.place === 'circunvalar')) && isButtonSelected.circunvalar
@@ -212,8 +241,8 @@ function App() {
   const isVictoria = (soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')) && isButtonSelected.victoria
   const isManizales = (soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')) && isButtonSelected.manizales
   const isUnicentro = (soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')) && isButtonSelected.unicentro
-  console.log(viewPDV)
-  console.log(isButtonSelected)
+  console.log(infoPlaces)
+
 
   const handleViewPDV = (place) => {
     setViewPDV({
@@ -246,33 +275,38 @@ function App() {
 
 
   return (
-    <div >
-      <div className='conteSelectPDV'>
-        {/* <img src={require('./assets/blanco.png')} alt='logo' className='logoSayo' /> */}
-        <audio src='./assets/sound/alert.wav' autoPlay={true} loop={true} controls={false} volume={1} />
-        {/* <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })}>Circunvalar</button>
+    <div className='conteWindow'>
+      <div>
+        <BarInfoDelivery infoPlaces={infoPlaces} />
+      </div>
+      <div >
+        <div className='conteSelectPDV'>
+          {/* <img src={require('./assets/blanco.png')} alt='logo' className='logoSayo' /> */}
+          <audio src='./assets/sound/alert.wav' autoPlay={true} loop={true} controls={false} volume={1} />
+          {/* <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })}>Circunvalar</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, treinta: !viewPDV.treinta })}>Av 30 de Agosto</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, cerritos: !viewPDV.cerritos })}>Cerritos</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, arboleda: !viewPDV.arboleda })}>Arboleda</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, victoria: !viewPDV.victoria })}>Victoria</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, manizales: !viewPDV.manizales })}>Manizales</button>
         <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, unicentro: !viewPDV.unicentro })}>Unicentro</button> */}
-        <SoundButton audioAlarm={audioAlarm} />
-        <SelectPDV setViewPDV={setViewPDV} viewPDV={viewPDV} handleViewPDV={handleViewPDV} isButtonSelected={isButtonSelected} setIsButtonSelected={setIsButtonSelected} />
+          <SoundButton audioAlarm={audioAlarm} />
+          <SelectPDV setViewPDV={setViewPDV} viewPDV={viewPDV} handleViewPDV={handleViewPDV} isButtonSelected={isButtonSelected} setIsButtonSelected={setIsButtonSelected} />
+        </div>
+        {
+          (soldOut.length > 0 || suggest.length > 0) && isPDVSelected ?
+            <div className='cardContend'>
+              {isCircunvalar && <Circunvalar place={'circunvalar'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+              {isTreinta && <AvTreintaAgosto place={'treinta'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+              {isCerritos && <Cerritos place={'cerritos'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+              {isArboleda && <Arboleda place={'arboleda'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+              {isVictoria && <CiudadVictoria place={'victoria'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+              {isManizales && <Manizales place={'manizales'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+              {isUnicentro && <Unicentro place={'unicentro'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+            </div> :
+            <Loading />
+        }
       </div>
-      {
-        (soldOut.length > 0 || suggest.length > 0) && isPDVSelected ?
-          <div className='cardContend'>
-            {isCircunvalar && <Circunvalar place={'circunvalar'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-            {isTreinta && <AvTreintaAgosto place={'treinta'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-            {isCerritos && <Cerritos place={'cerritos'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-            {isArboleda && <Arboleda place={'arboleda'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-            {isVictoria && <CiudadVictoria place={'victoria'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-            {isManizales && <Manizales place={'manizales'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-            {isUnicentro && <Unicentro place={'unicentro'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
-          </div> :
-          <Loading />
-      }
     </div>
   );
 }

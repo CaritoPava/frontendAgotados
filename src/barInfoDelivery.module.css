@@ -1,0 +1,37 @@
+.contedBar {
+  padding-top: 2rem;
+  width: 10vw;
+  height: 100%;
+  background-color: #032d44;
+  float: left;
+  border-right: 1px solid #e7e7e7;
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  border: none;
+  margin: auto;
+  box-shadow: 10px 10px 63px -14px rgba(219, 219, 219, 1);
+  color: white;
+}
+
+.contedBar h2 {
+  text-align: center;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.namePDV {
+  background-color: rgb(172, 11, 11);
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px 10px 0px 0px;
+  padding: 3px 0 3px 0;
+}
+
+.card {
+  background-color: #065864;
+  margin-bottom: 25px;
+  padding-bottom: 5px;
+  border-radius: 10px 10px 0px 0px;
+}

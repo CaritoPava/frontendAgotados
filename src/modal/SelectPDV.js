@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import { BasicModal } from './BasicModal'
 import { BsHouseDoor } from 'react-icons/bs'
 import img from '../assets/2085.jpg'
-import { ButtonConfirm, ButtonSelect, ContendButton, ImgModal, ModalIcon, ModalTitle } from './modalStyled'
+import { ButtonSelect, ContendButton, ImgModal, ModalIcon, ModalTitle } from './modalStyled'
 
 
 export const SelectPDV = ({ setViewPDV, viewPDV, handleViewPDV, isButtonSelected, setIsBUttonSelecte }) => {
-  console.log(viewPDV, "viewPDV")
 
   const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -35,8 +34,6 @@ export const SelectPDV = ({ setViewPDV, viewPDV, handleViewPDV, isButtonSelected
             <ButtonSelect isButtonSelected={isButtonSelected.manizales} onClick={() => handleViewPDV('manizales')}>Mall Plaza (Manizales)</ButtonSelect>
             <ButtonSelect isButtonSelected={isButtonSelected.arboleda} onClick={() => handleViewPDV('arboleda')}>Parque Arboleda</ButtonSelect>
           </ContendButton>
-
-
         </BasicModal>
       )}
     </div>

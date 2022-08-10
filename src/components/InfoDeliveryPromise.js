@@ -20,7 +20,6 @@ export const InfoDeliveryPromise = ({ place, infoPlaces }) => {
       <div className={styles.contendInfodelivery}>
 
         <IconContext.Provider value={{ className: styles.reacticons }}>
-
           {
             promes <= 45 ?
               <div className={styles.contePromise}>

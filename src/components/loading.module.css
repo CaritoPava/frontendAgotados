@@ -1,7 +1,7 @@
 .contentNotSoldout {
   background-color: #05daff;
   width: 100vw;
-  height: 100vh;
+  height: 104%;
   display: flex;
   justify-content: center;
   align-items: center;
