@@ -23,24 +23,26 @@ export const InfoDeliveryPromise = ({ place, infoPlaces }) => {
           {
             promes <= 45 ?
               <div className={styles.contePromise}>
-                <p><FcAlarmClock /></p>
+                {/* <p><FcAlarmClock /></p> */}
                 <p>{promes}</p>
+                <p>min</p>
               </div>
               :
               promes >= 80 ?
                 <div className={styles.contePromise4}>
-                  <p><FcAlarmClock /></p>
+                  {/* <p><FcAlarmClock /></p> */}
                   <p>{promes}</p>
                 </div>
                 :
                 <div className={styles.contePromise3}>
-                  <p><FcAlarmClock /></p>
+                  {/* <p><FcAlarmClock /></p> */}
                   <p>{promes}</p>
                 </div>
           }
           <div className={styles.contePromise}>
-            <p><FcShop /></p>
+            {/* <p><FcShop /></p> */}
             <p>00</p>
+            <p>und</p>
           </div>
         </IconContext.Provider>
       </div>

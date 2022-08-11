@@ -277,7 +277,7 @@ function App() {
   return (
     <div className='conteWindow'>
       <div>
-        <BarInfoDelivery infoPlaces={infoPlaces} />
+        <BarInfoDelivery infoPlaces={infoPlaces} isButtonSelected={isButtonSelected} isPDVSelected={isPDVSelected} />
       </div>
       <div >
         <div className='conteSelectPDV'>

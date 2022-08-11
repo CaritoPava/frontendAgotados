@@ -14,7 +14,7 @@
   border-radius: 20px;
   align-items: center;
   width: 50%;
-  font-size: 0.8vw;
+  font-size: 0.4rem;
   padding: 0;
 }
 
@@ -25,7 +25,7 @@
   border-radius: 20px;
   align-items: center;
   width: 50%;
-  font-size: 0.8vw;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -36,7 +36,7 @@
   border-radius: 20px;
   align-items: center;
   width: 50%;
-  font-size: 0.8vw;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -47,7 +47,7 @@
   border-radius: 20px;
   align-items: center;
   width: 50%;
-  font-size: 0.8vw;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -60,6 +60,7 @@
 .contePromise p {
   padding: 2px;
   margin: 2px;
+  font-size: 0.7rem;
 
 }
 

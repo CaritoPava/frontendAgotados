@@ -48,7 +48,7 @@ export const ModalIcon = styled.div`
   padding: 10px;
   color: white;
   cursor: pointer;
-  top: 85%;
+  top: 82%;
   left: 97%;
   position: fixed;
   transition: all;
@@ -63,7 +63,7 @@ export const ButtonSelect = styled.button`
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: bold;
   cursor: pointer;
   transition: all;
@@ -85,7 +85,7 @@ export const ButtonConfirm = styled.button`
   cursor: pointer;
   transition: all;
   margin-bottom: 2rem;
- margin-top: 2rem;
+  margin-top: 0.2rem;
   align-items: center;
   :hover { box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); }
   `
@@ -96,7 +96,7 @@ export const ContendButton = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 2em;
-  margin-bottom:2em
+  margin-bottom:0.2em
   `
 
 export const ImgModal = styled.img`
