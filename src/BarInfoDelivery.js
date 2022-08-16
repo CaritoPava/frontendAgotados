@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { InfoDeliveryPromise } from './components/InfoDeliveryPromise'
 import styles from './barInfoDelivery.module.css'
 
 export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected }) => {
+
+
 
   const places = {
     circunvalar: "CIRCUNVALAR",
@@ -100,6 +102,7 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
       </div>
         )
       } */}
+
     </div>
   )
 }

@@ -60,6 +60,7 @@ function App() {
   })
 
   const [isPDVSelected, setIsPDVSelected] = useState(false)
+  const [isBarActive, setIsBarActive] = useState(true)
 
 
   useEffect(() => {
@@ -111,6 +112,7 @@ function App() {
       ...infoPlaces,
       [Object.keys(args)]: args[Object.keys(args)]
     })
+    console.log(args, "args")
   })
 
   socket.on('stock_cc_soldout', (args) => {
@@ -271,15 +273,16 @@ function App() {
   }, [isButtonSelected])
 
 
-
+  // onClick={() => setIsBarActive(!isBarActive)} style={{ display: !isBarActive ? "none" : "visibility" }}
 
 
   return (
     <div className='conteWindow'>
-      <div>
-        <BarInfoDelivery infoPlaces={infoPlaces} isButtonSelected={isButtonSelected} isPDVSelected={isPDVSelected} />
-      </div>
       <div >
+        <BarInfoDelivery infoPlaces={infoPlaces} isButtonSelected={isButtonSelected} isPDVSelected={isPDVSelected} />
+        <button > ◀︎ </button>
+      </div>
+      <div>
         <div className='conteSelectPDV'>
           {/* <img src={require('./assets/blanco.png')} alt='logo' className='logoSayo' /> */}
           <audio src='./assets/sound/alert.wav' autoPlay={true} loop={true} controls={false} volume={1} />
