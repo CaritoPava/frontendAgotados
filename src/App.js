@@ -112,7 +112,27 @@ function App() {
       ...infoPlaces,
       [Object.keys(args)]: args[Object.keys(args)]
     })
-    console.log(args, "args")
+
+    setAudioAlarm(true)
+    setTimeout(() => {
+      setAudioAlarm(false)
+    }, 10000)
+    // setAudioAlarm(false)
+    console.log(args, "esto llega por el socket")
+    setAlert(args)
+
+    MySwal.fire({
+      title: `Ha cambiado el promesa de entrega a  ${args[Object.keys(args)].time} minutos,
+      ${args[Object.keys(args)].products} unidades en proceso en ${Object.keys(args)}`,
+      icon: 'info',
+      iconColor: 'white',
+      timer: 20000,
+      showConfirmButton: false,
+      background: 'blue',
+      color: 'white',
+      allowOutsideClick: true,
+    })
+
   })
 
   socket.on('stock_cc_soldout', (args) => {

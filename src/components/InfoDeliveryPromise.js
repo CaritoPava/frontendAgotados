@@ -3,50 +3,94 @@ import { FcAlarmClock } from 'react-icons/fc'
 import { IconContext } from 'react-icons'
 import { FcShop } from 'react-icons/fc'
 
-export const InfoDeliveryPromise = ({ place, infoPlaces }) => {
-
-  const promes = 10
-
-  // console.log('esta es la info')
-
-  // console.log(place, 'place!!!!OJO')
-  // console.log(infoPlaces, 'Info place!!!!')
-  // console.log(infoPlaces.cerritos)
+export const InfoDeliveryPromise = ({ infoPlaces, place }) => {
 
 
+  const places = [
+    "circunvalar",
+    "treinta",
+    "cerritos",
+    "arboleda",
+    "victoria",
+    "manizales",
+    "unicentro",
+    " armenia",
+    " pereiraPlaza"
+  ]
+
+
+
+  // return (
+  //   <>
+
+  //     <div className={styles.contendInfodelivery}>
+
+  //       <IconContext.Provider value={{ className: styles.reacticons }}>
+  //         {
+  //           promes <= 45 ?
+  //             <div className={styles.contePromise}>
+  //               {/* <p><FcAlarmClock /></p> */}
+  //               <p>{infoPlaces[place] ? <p>{infoPlaces[place].time}</p> : "no hay datos"}</p>
+  //               <p>min</p>
+  //             </div>
+  //             :
+  //             promes >= 80 ?
+  //               <div className={styles.contePromise4}>
+  //                 {/* <p><FcAlarmClock /></p> */}
+  //                 {infoPlaces[place] ? <p>{infoPlaces[place].time}</p> : "no hay datos"}
+  //                 <p>min</p>
+  //               </div>
+  //               :
+  //               <div className={styles.contePromise3}>
+  //                 {/* <p><FcAlarmClock /></p> */}
+  //                 {infoPlaces[place] ? <p>{infoPlaces[place].time}</p> : "no hay datos"}
+  //                 <p>min</p>
+  //               </div>
+  //         }
+  //         <div className={styles.contePromise}>
+  //           {
+  //             promes <= 45 ?
+  //               <div className={styles.contePromise}>
+  //                 {/* <p><FcAlarmClock /></p> */}
+  //                 <p>{infoPlaces[place].products}</p>
+  //                 <p>unid</p>
+  //               </div>
+  //               :
+  //               promes >= 80 ?
+  //                 <div className={styles.contePromise4}>
+  //                   {/* <p><FcAlarmClock /></p> */}
+  //                   <p>{infoPlaces[place].products}</p>
+  //                   <p>unid</p>
+  //                 </div>
+  //                 :
+  //                 <div className={styles.contePromise3}>
+  //                   {/* <p><FcAlarmClock /></p> */}
+  //                   <p>{infoPlaces[place].products}</p>
+  //                   <p>unid</p>
+  //                 </div>
+  //           }
+  //         </div>
+  //       </IconContext.Provider>
+  //     </div>
+
+  //   </>
+  // )
   return (
     <>
-
       <div className={styles.contendInfodelivery}>
-
-        <IconContext.Provider value={{ className: styles.reacticons }}>
-          {
-            promes <= 45 ?
-              <div className={styles.contePromise}>
-                {/* <p><FcAlarmClock /></p> */}
-                <p>{promes}</p>
-                <p>min</p>
-              </div>
-              :
-              promes >= 80 ?
-                <div className={styles.contePromise4}>
-                  {/* <p><FcAlarmClock /></p> */}
-                  <p>{promes}</p>
-                </div>
-                :
-                <div className={styles.contePromise3}>
-                  {/* <p><FcAlarmClock /></p> */}
-                  <p>{promes}</p>
-                </div>
-          }
+        {infoPlaces[place] ?
           <div className={styles.contePromise}>
-            {/* <p><FcShop /></p> */}
-            <p>00</p>
-            <p>und</p>
+            <p>{infoPlaces[place].products}</p>
+            <p>unid</p>
           </div>
-        </IconContext.Provider>
+          : " 🙁 no hay datos"}
+        {infoPlaces[place] ?
+          <div className={styles.contePromise}>
+            <p>{infoPlaces[place].time}</p>
+            <p>min</p>
+          </div>
+          : null}
       </div>
-
     </>
   )
 }
