@@ -13,9 +13,10 @@
   background-color: rgba(67, 230, 124, 0.448);
   border-radius: 20px;
   align-items: center;
-  width: 50%;
-  font-size: 0.4rem;
+  width: 100%;
+  font-size: 0.5rem;
   padding: 0;
+  margin: 0px 10px;
 }
 
 .contePromise2 {
@@ -60,7 +61,7 @@
 .contePromise p {
   padding: 2px;
   margin: 2px;
-  font-size: 0.7rem;
+  font-size: 1rem;
 
 }
 

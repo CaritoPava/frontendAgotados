@@ -94,14 +94,14 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
         )
       }
 
-      {/* {
+      {
         isButtonSelected.pereiraPlaza && (
-      <div className={styles.card}>
-        <h4 className={styles.namePDV}>{places.pereiraPlaza}</h4>
-        <InfoDeliveryPromise infoPlaces={infoPlaces} />
-      </div>
+          <div className={styles.card}>
+            <h4 className={styles.namePDV}>{places.pereiraPlaza}</h4>
+            <InfoDeliveryPromise infoPlaces={infoPlaces} />
+          </div>
         )
-      } */}
+      }
 
     </div>
   )

@@ -5,7 +5,7 @@ import img from '../assets/2085.jpg'
 import { ButtonSelect, ContendButton, ImgModal, ModalIcon, ModalTitle } from './modalStyled'
 
 
-export const SelectPDV = ({ setViewPDV, viewPDV, handleViewPDV, isButtonSelected, setIsBUttonSelecte }) => {
+export const SelectPDV = ({ setViewPDV, viewPDV, handleViewPDV, handleViewPDVAll, isButtonSelected, setIsBUttonSelecte }) => {
 
   const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -25,6 +25,7 @@ export const SelectPDV = ({ setViewPDV, viewPDV, handleViewPDV, isButtonSelected
         >
           <ModalTitle>SELECCIONA LOS PUNTOS DE VENTA QUE DESEAS VER</ModalTitle>
           <ContendButton>
+
             <ImgModal src={img} alt="" />
             <ButtonSelect isButtonSelected={isButtonSelected.circunvalar} onClick={() => handleViewPDV('circunvalar')}>Circunvalar</ButtonSelect>
             <ButtonSelect isButtonSelected={isButtonSelected.treinta} onClick={() => handleViewPDV('treinta')}>Av 30 de Agosto</ButtonSelect>
@@ -33,6 +34,10 @@ export const SelectPDV = ({ setViewPDV, viewPDV, handleViewPDV, isButtonSelected
             <ButtonSelect isButtonSelected={isButtonSelected.unicentro} onClick={() => handleViewPDV('unicentro')}>Unicentro</ButtonSelect>
             <ButtonSelect isButtonSelected={isButtonSelected.manizales} onClick={() => handleViewPDV('manizales')}>Mall Plaza (Manizales)</ButtonSelect>
             <ButtonSelect isButtonSelected={isButtonSelected.arboleda} onClick={() => handleViewPDV('arboleda')}>Parque Arboleda</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.pereiraPlaza} onClick={() => handleViewPDV('pereiraPlaza')}>Pereira Plaza</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.armenia} onClick={() => handleViewPDV('armenia')}>Armenia</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.allPDVs} onClick={() => handleViewPDV("allPDVs")}>SELECIONAR TODO</ButtonSelect>
+
           </ContendButton>
         </BasicModal>
       )}

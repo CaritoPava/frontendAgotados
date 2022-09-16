@@ -15,6 +15,7 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
     victoria: "CIUDAD VICTORIA",
     manizales: "MANIZALES",
     unicentro: "UNICENTRO",
+    pereiraPlaza: "PEREIRA PLAZA",
     armenia: "ARMENIA"
   }
 
@@ -118,6 +119,36 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           >
             <div className={styles.contendInfoPDV}>
               <h2 className={styles.namePDV7} >{places[place]}</h2>
+              {/* <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} /> */}
+            </div>
+            <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />
+          </div>
+          :
+          null
+      }
+      {
+        places[place] === "PEREIRA PLAZA"
+          ?
+          <div
+            className={styles.contendCard1}
+          >
+            <div className={styles.contendInfoPDV}>
+              <h2 className={styles.namePDV8} >{places[place]}</h2>
+              {/* <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} /> */}
+            </div>
+            <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />
+          </div>
+          :
+          null
+      }
+      {
+        places[place] === "ARMENIA"
+          ?
+          <div
+            className={styles.contendCard1}
+          >
+            <div className={styles.contendInfoPDV}>
+              <h2 className={styles.namePDV9} >{places[place]}</h2>
               {/* <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} /> */}
             </div>
             <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />

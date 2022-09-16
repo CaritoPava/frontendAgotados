@@ -13,6 +13,8 @@ import { CiudadVictoria } from './components/cardsPDV/CiudadVictoria';
 import { Unicentro } from './components/cardsPDV/Unicentro';
 import { Manizales } from './components/cardsPDV/Manizales';
 import { Arboleda } from './components/cardsPDV/Arboleda';
+import { PereiraPlaza } from './components/cardsPDV/PereiraPlaza';
+import { Armenia } from './components/cardsPDV/Armenia';
 import { SoundButton } from './components/controls/SoundButton';
 import { getSoldOut } from './helpers/getSoldOut';
 import { getSuggest } from './helpers/getSuggest';
@@ -20,12 +22,11 @@ import { Loading } from './components/Loading';
 import { SelectPDV } from './modal/SelectPDV';
 import { BarInfoDelivery } from './BarInfoDelivery';
 
-const socket = io('http://44.208.37.247:9000', {
+const socket = io(process.env.URL_RT || 'localhost:9000', {
   query: {
     alias: 'call center'
   }
 })
-
 
 const MySwal = withReactContent(Swal)
 
@@ -45,6 +46,7 @@ function App() {
     victoria: false,
     manizales: false,
     unicentro: false,
+    pereiraPlaza: false,
     armenia: false
   })
   const [audioAlarm, setAudioAlarm] = useState(false)
@@ -56,11 +58,46 @@ function App() {
     victoria: false,
     manizales: false,
     unicentro: false,
-    armenia: false
+    pereiraPlaza: false,
+    armenia: false,
+    allPDVs: false,
   })
 
   const [isPDVSelected, setIsPDVSelected] = useState(false)
   const [isBarActive, setIsBarActive] = useState(true)
+  const [time, setTime] = useState(0)
+
+  console.log(soldOut, suggest, isButtonSelected.pereiraPlaza)
+  // tarea programa de borrar estado
+  useEffect(() => {
+    setInterval(() => {
+      const getHour = () => {
+        const date = new Date()
+        const hour = date.getHours()
+        return hour
+      }
+      setTime(getHour())
+    }, 1000)
+    if (time === 0) {
+      console.log('hola')
+      getSoldOut()
+        .then(response => {
+          setSoldout(response)
+        }
+        )
+        .catch(err => console.log(err))
+
+      getSuggest()
+        .then(response => {
+          setSuggest(response)
+        }
+        )
+        .catch(err => console.log(err))
+    }
+  }, [time])
+
+  console.log(time)
+
 
 
   useEffect(() => {
@@ -122,8 +159,9 @@ function App() {
     setAlert(args)
 
     MySwal.fire({
-      title: `Ha cambiado el promesa de entrega a  ${args[Object.keys(args)].time} minutos,
-      ${args[Object.keys(args)].products} unidades en proceso en ${Object.keys(args)}`,
+      title: `Ha cambiado la promesa de entrega a  ${args[Object.keys(args)].time} minutos`,
+      // title: `Ha cambiado el promesa de entrega a  ${args[Object.keys(args)].time} minutos,
+      // ${args[Object.keys(args)].products} unidades en proceso en ${Object.keys(args)}`,
       icon: 'info',
       iconColor: 'white',
       timer: 20000,
@@ -210,6 +248,7 @@ function App() {
 
 
   socket.on('stock_cc_soldout_remove', (args) => {
+    console.log(args, "esto llega por el socket")
     setReloadAPI(!reloadAPI)
     setAudioAlarm(true)
 
@@ -263,20 +302,65 @@ function App() {
   const isVictoria = (soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')) && isButtonSelected.victoria
   const isManizales = (soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')) && isButtonSelected.manizales
   const isUnicentro = (soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')) && isButtonSelected.unicentro
-  console.log(infoPlaces)
+  const isPereiraPlaza = (soldOut.find(soldOut => soldOut.place === 'pereiraPlaza') || suggest.find(suggest => suggest.place === 'pereiraPlaza')) && isButtonSelected.pereiraPlaza
+  const isArmenia = (soldOut.find(soldOut => soldOut.place === 'armenia') || suggest.find(suggest => suggest.place === 'armenia')) && isButtonSelected.armenia
+
 
 
   const handleViewPDV = (place) => {
-    setViewPDV({
-      ...viewPDV,
-      [place]: !viewPDV[place]
-    })
-    setIsButtonSelected({
-      ...viewPDV,
-      [place]: !isButtonSelected[place]
-    })
+
+    if (place === 'allPDVs') {
+
+      // for (const place in isButtonSelected) {
+      //   setIsButtonSelected({
+      //     ...isButtonSelected,
+      //     [place]: true
+      //   })
+      // }
+      setIsButtonSelected({
+        circunvalar: true,
+        treinta: true,
+        cerritos: true,
+        arboleda: true,
+        victoria: true,
+        manizales: true,
+        unicentro: true,
+        pereiraPlaza: true,
+        armenia: true
+      })
+
+      // for (const place in viewPDV) {
+      //   setViewPDV({
+      //     ...viewPDV,
+      //     [place]: true
+      //   })
+      // }
+
+      setViewPDV({
+        circunvalar: true,
+        treinta: true,
+        cerritos: true,
+        arboleda: true,
+        victoria: true,
+        manizales: true,
+        unicentro: true,
+        pereiraPlaza: true,
+        armenia: true
+      })
+    } else {
+      setViewPDV({
+        ...viewPDV,
+        [place]: !viewPDV[place]
+      })
+      setIsButtonSelected({
+        ...isButtonSelected,
+        [place]: !isButtonSelected[place]
+      })
+    }
   }
 
+
+  // se usa para mostrar en pantalla las sucursales seleccionadas
   useEffect(() => {
     let isAnyButtonSelected = 0
     for (const place in isButtonSelected) {
@@ -304,15 +388,7 @@ function App() {
       </div>
       <div>
         <div className='conteSelectPDV'>
-          {/* <img src={require('./assets/blanco.png')} alt='logo' className='logoSayo' /> */}
           <audio src='./assets/sound/alert.wav' autoPlay={true} loop={true} controls={false} volume={1} />
-          {/* <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, circunvalar: !viewPDV.circunvalar })}>Circunvalar</button>
-        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, treinta: !viewPDV.treinta })}>Av 30 de Agosto</button>
-        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, cerritos: !viewPDV.cerritos })}>Cerritos</button>
-        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, arboleda: !viewPDV.arboleda })}>Arboleda</button>
-        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, victoria: !viewPDV.victoria })}>Victoria</button>
-        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, manizales: !viewPDV.manizales })}>Manizales</button>
-        <button className='btnSelectPDV' onClick={() => setViewPDV({ ...viewPDV, unicentro: !viewPDV.unicentro })}>Unicentro</button> */}
           <SoundButton audioAlarm={audioAlarm} />
           <SelectPDV setViewPDV={setViewPDV} viewPDV={viewPDV} handleViewPDV={handleViewPDV} isButtonSelected={isButtonSelected} setIsButtonSelected={setIsButtonSelected} />
         </div>
@@ -326,12 +402,16 @@ function App() {
               {isVictoria && <CiudadVictoria place={'victoria'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
               {isManizales && <Manizales place={'manizales'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
               {isUnicentro && <Unicentro place={'unicentro'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+              {isPereiraPlaza && <PereiraPlaza place={'pereiraPlaza'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+              {isArmenia && <Armenia place={'armenia'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
             </div> :
             <Loading />
         }
       </div>
     </div>
   );
+
 }
+
 
 export default App;

@@ -78,18 +78,19 @@ export const InfoDeliveryPromise = ({ infoPlaces, place }) => {
   return (
     <>
       <div className={styles.contendInfodelivery}>
-        {infoPlaces[place] ?
+        {/* {infoPlaces[place] ?
           <div className={styles.contePromise}>
             <p>{infoPlaces[place].products}</p>
             <p>unid</p>
           </div>
-          : " 🙁 no hay datos"}
+          : " 🙁 no hay datos"} */}
         {infoPlaces[place] ?
           <div className={styles.contePromise}>
             <p>{infoPlaces[place].time}</p>
             <p>min</p>
           </div>
-          : null}
+          : " 🙁 no hay datos"
+        }
       </div>
     </>
   )

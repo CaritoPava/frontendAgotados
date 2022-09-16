@@ -111,3 +111,16 @@
   border-top-right-radius: 15px;
 
 }
+
+.namePDV8 {
+  text-align: center;
+  font-size: 1.3rem;
+  background-color: var(--azulBrillante);
+  color: rgb(18, 18, 18);
+  margin: 5px;
+  padding: 0;
+  margin: 5px 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+}
