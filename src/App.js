@@ -22,7 +22,10 @@ import { Loading } from './components/Loading';
 import { SelectPDV } from './modal/SelectPDV';
 import { BarInfoDelivery } from './BarInfoDelivery';
 
-const socket = io(process.env.URL_RT || 'localhost:9000', {
+
+console.log(process.env.NODE_ENV)
+console.log(process.env)
+const socket = io(process.env.REACT_APP_URL_RT || 'localhost:9000', {
   query: {
     alias: 'call center'
   }
@@ -62,10 +65,12 @@ function App() {
     armenia: false,
     allPDVs: false,
   })
+  const [isSelectAllPDV, setIsSelectAllPDV] = useState(false)
 
   const [isPDVSelected, setIsPDVSelected] = useState(false)
   const [isBarActive, setIsBarActive] = useState(true)
-  const [time, setTime] = useState(0)
+  const [time, setTime] = useState(new Date().getHours())
+
 
   console.log(soldOut, suggest, isButtonSelected.pereiraPlaza)
   // tarea programa de borrar estado
@@ -77,23 +82,16 @@ function App() {
         return hour
       }
       setTime(getHour())
-    }, 1000)
-    if (time === 0) {
-      console.log('hola')
-      getSoldOut()
-        .then(response => {
-          setSoldout(response)
-        }
-        )
-        .catch(err => console.log(err))
+    }, 14400000)
 
-      getSuggest()
-        .then(response => {
-          setSuggest(response)
-        }
-        )
-        .catch(err => console.log(err))
+    if ((8 - time) > 0 && time < 6) {
+      console.log('hola')
+      setSoldout([])
+      setSuggest([])
+      window.location.reload()
+      console.log('hola entre n')
     }
+
   }, [time])
 
   console.log(time)
@@ -109,7 +107,7 @@ function App() {
       setIsConnected(false)
     })
 
-    const urlPlaces = 'http://44.208.37.247:8080/api/places'
+    const urlPlaces = process.env.REACT_APP_URL_API_PLACES || 'localhost:8080'
 
 
     try {
@@ -295,69 +293,60 @@ function App() {
     }
   })
 
-  const isCircunvalar = (soldOut.find(soldOut => soldOut.place === 'circunvalar') || suggest.find(suggest => suggest.place === 'circunvalar')) && isButtonSelected.circunvalar
-  const isTreinta = (soldOut.find(soldOut => soldOut.place === 'treinta') || suggest.find(suggest => suggest.place === 'treinta')) && isButtonSelected.treinta
-  const isCerritos = (soldOut.find(soldOut => soldOut.place === 'cerritos') || suggest.find(suggest => suggest.place === 'cerritos')) && isButtonSelected.cerritos
-  const isArboleda = (soldOut.find(soldOut => soldOut.place === 'arboleda') || suggest.find(suggest => suggest.place === 'arboleda')) && isButtonSelected.arboleda
-  const isVictoria = (soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')) && isButtonSelected.victoria
-  const isManizales = (soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')) && isButtonSelected.manizales
-  const isUnicentro = (soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')) && isButtonSelected.unicentro
-  const isPereiraPlaza = (soldOut.find(soldOut => soldOut.place === 'pereiraPlaza') || suggest.find(suggest => suggest.place === 'pereiraPlaza')) && isButtonSelected.pereiraPlaza
-  const isArmenia = (soldOut.find(soldOut => soldOut.place === 'armenia') || suggest.find(suggest => suggest.place === 'armenia')) && isButtonSelected.armenia
+  let isCircunvalar = false
+  let isTreinta = false
+  let isCerritos = false
+  let isArboleda = false
+  let isVictoria = false
+  let isManizales = false
+  let isUnicentro = false
+  let isPereiraPlaza = false
+  let isArmenia = false
 
+  if (!isSelectAllPDV) {
+
+    isCircunvalar = ((soldOut.find(soldOut => soldOut.place === 'circunvalar') || suggest.find(suggest => suggest.place === 'circunvalar')) && (isButtonSelected.circunvalar))
+    isTreinta = ((soldOut.find(soldOut => soldOut.place === 'treinta') || suggest.find(suggest => suggest.place === 'treinta')) && (isButtonSelected.treinta))
+    isCerritos = (soldOut.find(soldOut => soldOut.place === 'cerritos') || suggest.find(suggest => suggest.place === 'cerritos')) && (isButtonSelected.cerritos)
+    isArboleda = (soldOut.find(soldOut => soldOut.place === 'arboleda') || suggest.find(suggest => suggest.place === 'arboleda')) && (isButtonSelected.arboleda)
+    isVictoria = (soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')) && (isButtonSelected.victoria)
+    isManizales = (soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')) && (isButtonSelected.manizales)
+    isUnicentro = (soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')) && (isButtonSelected.unicentrourbano)
+    isPereiraPlaza = (soldOut.find(soldOut => soldOut.place === 'pereiraPlaza') || suggest.find(suggest => suggest.place === 'pereiraPlaza')) && (isButtonSelected.pereiraPlaza)
+    isArmenia = (soldOut.find(soldOut => soldOut.place === 'armenia') || suggest.find(suggest => suggest.place === 'armenia')) && (isButtonSelected.armenia)
+  } else {
+    isCircunvalar = true
+    isTreinta = true
+    isCerritos = true
+    isArboleda = true
+    isVictoria = true
+    isManizales = true
+    isUnicentro = true
+    isPereiraPlaza = true
+    isArmenia = true
+  }
 
 
   const handleViewPDV = (place) => {
 
-    if (place === 'allPDVs') {
 
-      // for (const place in isButtonSelected) {
-      //   setIsButtonSelected({
-      //     ...isButtonSelected,
-      //     [place]: true
-      //   })
-      // }
-      setIsButtonSelected({
-        circunvalar: true,
-        treinta: true,
-        cerritos: true,
-        arboleda: true,
-        victoria: true,
-        manizales: true,
-        unicentro: true,
-        pereiraPlaza: true,
-        armenia: true
-      })
+    setViewPDV({
+      ...viewPDV,
+      [place]: !viewPDV[place]
+    })
+    setIsButtonSelected({
+      ...isButtonSelected,
+      [place]: !isButtonSelected[place]
+    })
 
-      // for (const place in viewPDV) {
-      //   setViewPDV({
-      //     ...viewPDV,
-      //     [place]: true
-      //   })
-      // }
-
-      setViewPDV({
-        circunvalar: true,
-        treinta: true,
-        cerritos: true,
-        arboleda: true,
-        victoria: true,
-        manizales: true,
-        unicentro: true,
-        pereiraPlaza: true,
-        armenia: true
-      })
-    } else {
-      setViewPDV({
-        ...viewPDV,
-        [place]: !viewPDV[place]
-      })
-      setIsButtonSelected({
-        ...isButtonSelected,
-        [place]: !isButtonSelected[place]
-      })
-    }
   }
+
+  const handleViewPDVAll = () => {
+    setIsSelectAllPDV(!isSelectAllPDV)
+  }
+
+
+  console.log(isSelectAllPDV, "isSelectAllPDV")
 
 
   // se usa para mostrar en pantalla las sucursales seleccionadas
@@ -373,28 +362,25 @@ function App() {
     }
     else {
       setIsPDVSelected(true)
+
     }
   }, [isButtonSelected])
-
-
-  // onClick={() => setIsBarActive(!isBarActive)} style={{ display: !isBarActive ? "none" : "visibility" }}
-
 
   return (
     <div className='conteWindow'>
       <div >
-        <BarInfoDelivery infoPlaces={infoPlaces} isButtonSelected={isButtonSelected} isPDVSelected={isPDVSelected} />
-        <button > ◀︎ </button>
+        <BarInfoDelivery infoPlaces={infoPlaces} isButtonSelected={isButtonSelected} isPDVSelected={isPDVSelected} isSelectAllPDV={isSelectAllPDV} />
       </div>
       <div>
         <div className='conteSelectPDV'>
           <audio src='./assets/sound/alert.wav' autoPlay={true} loop={true} controls={false} volume={1} />
           <SoundButton audioAlarm={audioAlarm} />
-          <SelectPDV setViewPDV={setViewPDV} viewPDV={viewPDV} handleViewPDV={handleViewPDV} isButtonSelected={isButtonSelected} setIsButtonSelected={setIsButtonSelected} />
+          <SelectPDV setViewPDV={setViewPDV} viewPDV={viewPDV} handleViewPDV={handleViewPDV} handleViewPDVAll={handleViewPDVAll} isButtonSelected={isButtonSelected} setIsButtonSelected={setIsButtonSelected} isSelectAllPDV={isSelectAllPDV} />
         </div>
+
         {
-          (soldOut.length > 0 || suggest.length > 0) && isPDVSelected ?
-            <div className='cardContend'>
+          ((soldOut.length > 0 || suggest.length > 0) && isPDVSelected) || ((soldOut.length > 0 || suggest.length > 0) && isSelectAllPDV) ?
+            <div className={!isSelectAllPDV ? 'cardContend' : 'cardContendAll'}>
               {isCircunvalar && <Circunvalar place={'circunvalar'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
               {isTreinta && <AvTreintaAgosto place={'treinta'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
               {isCerritos && <Cerritos place={'cerritos'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}

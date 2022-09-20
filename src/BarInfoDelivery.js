@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { InfoDeliveryPromise } from './components/InfoDeliveryPromise'
 import styles from './barInfoDelivery.module.css'
 
-export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected }) => {
+export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected, isSelectAllPDV }) => {
 
 
 
@@ -21,9 +21,9 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
     <div className={styles.contedBar}>
 
       <h2>Tiempos y ocupación</h2>
-      {!isPDVSelected && <h3 className={styles.mesajeNoPDVSelected}>No tienes puntos de venta selecionados</h3>}
+      {(!isPDVSelected && !isSelectAllPDV) && <h3 className={styles.mesajeNoPDVSelected}>No tienes puntos de venta selecionados</h3>}
       {
-        isButtonSelected.circunvalar && (
+        ((isButtonSelected.circunvalar) || isSelectAllPDV) && (
           <div className={styles.card}>
             <h4 className={styles.namePDV}>{places.circunvalar}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} place={"circunvalar"} />
@@ -32,7 +32,7 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
       }
 
       {
-        isButtonSelected.treinta && (
+        (isButtonSelected.treinta || isSelectAllPDV) && (
           <div className={styles.card}>
             <h4 className={styles.namePDV}>{places.treinta}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} place={"treinta"} />
@@ -41,7 +41,7 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
       }
 
       {
-        isButtonSelected.cerritos && (
+        (isButtonSelected.cerritos || isSelectAllPDV) && (
           <div className={styles.card}>
             <h4 className={styles.namePDV}>{places.cerritos}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} place={"cerritos"} />
@@ -50,7 +50,7 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
       }
 
       {
-        isButtonSelected.arboleda && (
+        (isButtonSelected.arboleda || isSelectAllPDV) && (
           <div className={styles.card}>
             <h4 className={styles.namePDV}>{places.arboleda}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} place={"arboleda"} />
@@ -59,7 +59,7 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
       }
 
       {
-        isButtonSelected.victoria && (
+        (isButtonSelected.victoria || isSelectAllPDV) && (
           <div className={styles.card}>
             <h4 className={styles.namePDV}>{places.victoria}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} place={"victoria"} />
@@ -68,7 +68,7 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
       }
 
       {
-        isButtonSelected.manizales && (
+        (isButtonSelected.manizales || isSelectAllPDV) && (
           <div className={styles.card}>
             <h4 className={styles.namePDV}>{places.manizales}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} place={"manizales"} />
@@ -77,7 +77,7 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
       }
 
       {
-        isButtonSelected.unicentro && (
+        (isButtonSelected.unicentro || isSelectAllPDV) && (
           <div className={styles.card}>
             <h4 className={styles.namePDV}>{places.unicentro}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} place={"unicentro"} />
@@ -86,7 +86,7 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
       }
 
       {
-        isButtonSelected.armenia && (
+        (isButtonSelected.armenia || isSelectAllPDV) && (
           <div className={styles.card}>
             <h4 className={styles.namePDV}>{places.armenia}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} place={"armenia"} />
@@ -95,7 +95,7 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected })
       }
 
       {
-        isButtonSelected.pereiraPlaza && (
+        (isButtonSelected.pereiraPlaza || isSelectAllPDV) && (
           <div className={styles.card}>
             <h4 className={styles.namePDV}>{places.pereiraPlaza}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} />

@@ -72,6 +72,23 @@ export const ButtonSelect = styled.button`
   left:50%;
   :hover { box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); }
   `
+export const ButtonSelectAll = styled.button`
+  width:60px;
+  height: 60px;
+  background-color:${(props) => (props.isButtonSelected ? "var(--amarillo)" : "#ec671a")};
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 0.8em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all;
+  margin-bottom: 10px;
+  left:50%;
+  :hover { box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75); }
+  `
+
+
 
 export const ButtonConfirm = styled.button`
   width:30%;

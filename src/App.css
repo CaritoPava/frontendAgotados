@@ -24,6 +24,19 @@ body {
   /* flex-wrap: wrap; */
 }
 
+.cardContendAll {
+  width: 90vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+
+
+}
+
 .cardCircunavalar {
   background-color: aqua;
 }

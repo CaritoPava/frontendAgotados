@@ -2,7 +2,9 @@ import React from 'react'
 import { BackDrop, ButtonConfirm, ContendButton, Modal } from './modalStyled'
 import ReactDOM from 'react-dom'
 
+
 export const BasicModal = ({ isVisible, onClose, children }) => {
+
   const portalEL = document.getElementById('modal-box')
   if (isVisible) {
     return (
@@ -11,6 +13,7 @@ export const BasicModal = ({ isVisible, onClose, children }) => {
           <Modal>
             {children}
             <ContendButton>
+
               <ButtonConfirm onClick={onClose} >Confirmar</ButtonConfirm>
             </ContendButton>
           </Modal>
