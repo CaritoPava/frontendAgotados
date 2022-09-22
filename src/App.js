@@ -22,9 +22,6 @@ import { Loading } from './components/Loading';
 import { SelectPDV } from './modal/SelectPDV';
 import { BarInfoDelivery } from './BarInfoDelivery';
 
-
-console.log(process.env.NODE_ENV)
-console.log(process.env)
 const socket = io(process.env.REACT_APP_URL_RT || 'localhost:9000', {
   query: {
     alias: 'call center'
@@ -34,7 +31,6 @@ const socket = io(process.env.REACT_APP_URL_RT || 'localhost:9000', {
 const MySwal = withReactContent(Swal)
 
 function App() {
-
   const [isConnected, setIsConnected] = useState(socket.connected)
   const [infoPlaces, setInfoPlaces] = useState({})
   const [soldOut, setSoldout] = useState([])
@@ -73,28 +69,49 @@ function App() {
 
 
   console.log(soldOut, suggest, isButtonSelected.pereiraPlaza)
+  setInterval(() => {
+    const getHour = () => {
+      const date = new Date()
+      const hour = date.getHours()
+      return hour
+    }
+    setTime(getHour())
+  }, 600000)
+
+  const handleRefresh = () => {
+    getSoldOut()
+      .then(response => {
+        setSoldout(response = [])
+      }
+      )
+      .catch(err => console.log(err))
+
+    getSuggest()
+      .then(response => {
+        setSuggest(response = [])
+      }
+      )
+      .catch(err => console.log(err))
+    // window.location.reload(false)
+    // this.setState({})
+  }
+  let contador = 0
   // tarea programa de borrar estado
   useEffect(() => {
-    setInterval(() => {
-      const getHour = () => {
-        const date = new Date()
-        const hour = date.getHours()
-        return hour
-      }
-      setTime(getHour())
-    }, 14400000)
 
-    if ((8 - time) > 0 && time < 6) {
+    // if ((8 - time) > 0 && time < 6) {
+    if (time === 22) {
       console.log('hola')
-      setSoldout([])
-      setSuggest([])
-      window.location.reload()
-      console.log('hola entre n')
+      if (contador === 0) {
+        handleRefresh()
+        console.log('hola entre n')
+      }
+      contador++
     }
 
   }, [time])
 
-  console.log(time)
+  console.log(time, "time", new Date().getHours(), new Date().getMinutes())
 
 
 
@@ -246,7 +263,7 @@ function App() {
 
 
   socket.on('stock_cc_soldout_remove', (args) => {
-    console.log(args, "esto llega por el socket")
+    console.log(args, "esto llega por el socket de soldout remove")
     setReloadAPI(!reloadAPI)
     setAudioAlarm(true)
 
@@ -258,7 +275,7 @@ function App() {
     setAlert(args)
     if (soldOut.length > 0) {
       MySwal.fire({
-        title: `¡SE HA ELIMINADO UN ITEM DE AGOTADOS!`,
+        title: `¡SE HA ELIMINADO ${args.product.toUpperCase()} EN ${args.place.toUpperCase()} DE AGOTADOS!`,
         icon: 'success',
         iconColor: 'white',
         timer: 20000,
@@ -271,6 +288,7 @@ function App() {
   })
 
   socket.on('stock_cc_suggest_remove', (args) => {
+    console.log(args, "esto llega por el socket de suggest remove")
     setReloadAPI(!reloadAPI)
 
     setTimeout(() => {
@@ -281,7 +299,7 @@ function App() {
     setAlert(args)
     if (soldOut.length > 0) {
       MySwal.fire({
-        title: `¡SE HA ELIMINADO UN ITEM DE SUGERIDOS!`,
+        title: `¡SE HA ELIMINADO ${args.product.toUpperCase()} EN ${args.place.toUpperCase()} DE SUGERIDOS!`,
         icon: 'success',
         iconColor: 'white',
         timer: 20000,
@@ -311,7 +329,7 @@ function App() {
     isArboleda = (soldOut.find(soldOut => soldOut.place === 'arboleda') || suggest.find(suggest => suggest.place === 'arboleda')) && (isButtonSelected.arboleda)
     isVictoria = (soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')) && (isButtonSelected.victoria)
     isManizales = (soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')) && (isButtonSelected.manizales)
-    isUnicentro = (soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')) && (isButtonSelected.unicentrourbano)
+    isUnicentro = (soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')) && (isButtonSelected.unicentro)
     isPereiraPlaza = (soldOut.find(soldOut => soldOut.place === 'pereiraPlaza') || suggest.find(suggest => suggest.place === 'pereiraPlaza')) && (isButtonSelected.pereiraPlaza)
     isArmenia = (soldOut.find(soldOut => soldOut.place === 'armenia') || suggest.find(suggest => suggest.place === 'armenia')) && (isButtonSelected.armenia)
   } else {

@@ -148,7 +148,7 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
             className={styles.contendCard1}
           >
             <div className={styles.contendInfoPDV}>
-              <h2 className={styles.namePDV9} >{places[place]}</h2>
+              <h2 className={styles.namePDV2} >{places[place]}</h2>
               {/* <InfoDeliveryPromise place={place} infoPlaces={infoPlaces} /> */}
             </div>
             <InfoProducts place={place} soldOut={soldOut} suggest={suggest} />
