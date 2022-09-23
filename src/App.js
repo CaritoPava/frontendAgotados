@@ -68,50 +68,49 @@ function App() {
   const [time, setTime] = useState(new Date().getHours())
 
 
-  console.log(soldOut, suggest, isButtonSelected.pereiraPlaza)
-  setInterval(() => {
-    const getHour = () => {
-      const date = new Date()
-      const hour = date.getHours()
-      return hour
-    }
-    setTime(getHour())
-  }, 600000)
+  // setInterval(() => {
+  //   const getHour = () => {
+  //     const date = new Date()
+  //     const hour = date.getHours()
+  //     return hour
+  //   }
+  //   setTime(getHour())
+  // }, 600000)
 
-  const handleRefresh = () => {
-    getSoldOut()
-      .then(response => {
-        setSoldout(response = [])
-      }
-      )
-      .catch(err => console.log(err))
+  // const handleRefresh = () => {
+  //   getSoldOut()
+  //     .then(response => {
+  //       setSoldout(response = [])
+  //     }
+  //     )
+  //     .catch(err => console.log(err))
 
-    getSuggest()
-      .then(response => {
-        setSuggest(response = [])
-      }
-      )
-      .catch(err => console.log(err))
-    // window.location.reload(false)
-    // this.setState({})
-  }
-  let contador = 0
-  // tarea programa de borrar estado
-  useEffect(() => {
+  //   getSuggest()
+  //     .then(response => {
+  //       setSuggest(response = [])
+  //     }
+  //     )
+  //     .catch(err => console.log(err))
+  //   // window.location.reload(false)
+  //   // this.setState({})
+  // }
+  // let contador = 0
+  // // tarea programa de borrar estado
+  // useEffect(() => {
 
-    // if ((8 - time) > 0 && time < 6) {
-    if (time === 22) {
-      console.log('hola')
-      if (contador === 0) {
-        handleRefresh()
-        console.log('hola entre n')
-      }
-      contador++
-    }
+  //   // if ((8 - time) > 0 && time < 6) {
+  //   if (time === 22) {
+  //     console.log('hola')
+  //     if (contador === 0) {
+  //       handleRefresh()
+  //       console.log('hola entre n')
+  //     }
+  //     contador++
+  //   }
 
-  }, [time])
+  // }, [time])
 
-  console.log(time, "time", new Date().getHours(), new Date().getMinutes())
+
 
 
 
@@ -159,6 +158,13 @@ function App() {
     }
   }, [])
 
+
+  socket.on('stock_cc_restarting_sockets', (args) => {
+    console.log(args)
+    setReloadAPI(!reloadAPI)
+  })
+
+
   socket.on('stock_cc_places', (args) => {
     setInfoPlaces({
       ...infoPlaces,
@@ -170,7 +176,6 @@ function App() {
       setAudioAlarm(false)
     }, 10000)
     // setAudioAlarm(false)
-    console.log(args, "esto llega por el socket")
     setAlert(args)
 
     MySwal.fire({
@@ -263,7 +268,6 @@ function App() {
 
 
   socket.on('stock_cc_soldout_remove', (args) => {
-    console.log(args, "esto llega por el socket de soldout remove")
     setReloadAPI(!reloadAPI)
     setAudioAlarm(true)
 
@@ -288,7 +292,6 @@ function App() {
   })
 
   socket.on('stock_cc_suggest_remove', (args) => {
-    console.log(args, "esto llega por el socket de suggest remove")
     setReloadAPI(!reloadAPI)
 
     setTimeout(() => {
@@ -299,7 +302,7 @@ function App() {
     setAlert(args)
     if (soldOut.length > 0) {
       MySwal.fire({
-        title: `¡SE HA ELIMINADO ${args.product.toUpperCase()} EN ${args.place.toUpperCase()} DE SUGERIDOS!`,
+        title: `¡SE HA ELIMINADO ${args.product.toUpperCase()} EN ${args.place.toUpperCase()} EN SUGERIDOS!`,
         icon: 'success',
         iconColor: 'white',
         timer: 20000,
