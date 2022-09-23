@@ -68,53 +68,6 @@ function App() {
   const [isBarActive, setIsBarActive] = useState(true)
   const [time, setTime] = useState(new Date().getHours())
 
-
-  // setInterval(() => {
-  //   const getHour = () => {
-  //     const date = new Date()
-  //     const hour = date.getHours()
-  //     return hour
-  //   }
-  //   setTime(getHour())
-  // }, 600000)
-
-  // const handleRefresh = () => {
-  //   getSoldOut()
-  //     .then(response => {
-  //       setSoldout(response = [])
-  //     }
-  //     )
-  //     .catch(err => console.log(err))
-
-  //   getSuggest()
-  //     .then(response => {
-  //       setSuggest(response = [])
-  //     }
-  //     )
-  //     .catch(err => console.log(err))
-  //   // window.location.reload(false)
-  //   // this.setState({})
-  // }
-  // let contador = 0
-  // // tarea programa de borrar estado
-  // useEffect(() => {
-
-  //   // if ((8 - time) > 0 && time < 6) {
-  //   if (time === 22) {
-  //     console.log('hola')
-  //     if (contador === 0) {
-  //       handleRefresh()
-  //       console.log('hola entre n')
-  //     }
-  //     contador++
-  //   }
-
-  // }, [time])
-
-
-
-
-
   useEffect(() => {
     socket.on('connection', () => {
       setIsConnected(true)
@@ -162,7 +115,7 @@ function App() {
 
   socket.on('stock_cc_restarting_sockets', (args) => {
     console.log(args)
-    setReloadAPI(!reloadAPI)
+    window.location.reload()
   })
 
 
