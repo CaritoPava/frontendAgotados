@@ -31,6 +31,7 @@ const socket = io(process.env.REACT_APP_URL_RT || 'localhost:9000', {
 const MySwal = withReactContent(Swal)
 
 function App() {
+  console.log('version 1.0.0')
   const [isConnected, setIsConnected] = useState(socket.connected)
   const [infoPlaces, setInfoPlaces] = useState({})
   const [soldOut, setSoldout] = useState([])
@@ -367,7 +368,7 @@ function App() {
   }
 
 
-  console.log(isSelectAllPDV, "isSelectAllPDV")
+
 
 
   // se usa para mostrar en pantalla las sucursales seleccionadas
