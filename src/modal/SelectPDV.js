@@ -37,6 +37,7 @@ export const SelectPDV = ({ setViewPDV, viewPDV, handleViewPDV, handleViewPDVAll
             <ButtonSelect isButtonSelected={isButtonSelected.arboleda} onClick={() => handleViewPDV('arboleda')}>Parque Arboleda</ButtonSelect>
             <ButtonSelect isButtonSelected={isButtonSelected.pereiraPlaza} onClick={() => handleViewPDV('pereiraPlaza')}>Pereira Plaza</ButtonSelect>
             <ButtonSelect isButtonSelected={isButtonSelected.armenia} onClick={() => handleViewPDV('armenia')}>Armenia</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.BODEGA} onClick={() => handleViewPDV('BODEGA')}>Bodega</ButtonSelect>
             <ButtonSelectAll isButtonSelected={isSelectAllPDV} onClick={() => handleViewPDVAll()} >All PDVs</ButtonSelectAll>
             {/* <ButtonSelect  onClick={() => handleViewPDVAll()} ><ButtonSelect> */}
             {/* <ButtonSelect isButtonSelected={isButtonSelected.allPDVs} onClick={() => handleViewPDV("allPDVs")}>SELECIONAR TODO</ButtonSelect> */}

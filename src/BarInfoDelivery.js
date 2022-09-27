@@ -15,7 +15,8 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected, i
     manizales: "MANIZALES",
     unicentro: "UNICENTRO",
     armenia: "ARMENIA",
-    pereiraPlaza: "PEREIRA PLAZA"
+    pereiraPlaza: "PEREIRA PLAZA",
+    BODEGA: "BODEGA",
   }
   return (
     <div className={styles.contedBar}>
@@ -98,6 +99,14 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected, i
         (isButtonSelected.pereiraPlaza || isSelectAllPDV) && (
           <div className={styles.card}>
             <h4 className={styles.namePDV}>{places.pereiraPlaza}</h4>
+            <InfoDeliveryPromise infoPlaces={infoPlaces} />
+          </div>
+        )
+      }
+      {
+        (isButtonSelected.BODEGA || isSelectAllPDV) && (
+          <div className={styles.card}>
+            <h4 className={styles.namePDV}>{places.BODEGA}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} />
           </div>
         )

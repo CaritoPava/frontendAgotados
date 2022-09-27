@@ -47,6 +47,7 @@ function App() {
     manizales: false,
     unicentro: false,
     pereiraPlaza: false,
+    BODEGA: false,
     armenia: false
   })
   const [audioAlarm, setAudioAlarm] = useState(false)
@@ -60,13 +61,14 @@ function App() {
     unicentro: false,
     pereiraPlaza: false,
     armenia: false,
+    BODEGA: false,
     allPDVs: false,
   })
   const [isSelectAllPDV, setIsSelectAllPDV] = useState(false)
 
   const [isPDVSelected, setIsPDVSelected] = useState(false)
   const [isBarActive, setIsBarActive] = useState(true)
-  const [time, setTime] = useState(new Date().getHours())
+
 
   useEffect(() => {
     socket.on('connection', () => {
@@ -114,7 +116,7 @@ function App() {
 
 
   socket.on('stock_cc_restarting_sockets', (args) => {
-    console.log(args)
+    console.log(args, "se reinicio el socket")
     window.location.reload()
   })
 
@@ -160,7 +162,7 @@ function App() {
     // setAudioAlarm(false)
 
     setAlert(args)
-    if (soldOut.length > 0) {
+    if (soldOut.length > 0 && args.productName !== "SIN AGOTADOS") {
       MySwal.fire({
         title: `¡NUEVO AGOTADO! ${args.place.toUpperCase()}`,
         text: `${args.productName} está agotado en ${args.place}`,
@@ -169,6 +171,18 @@ function App() {
         timer: 20000,
         showConfirmButton: false,
         background: '#BA080D',
+        color: 'white',
+        allowOutsideClick: true,
+      })
+    } else {
+      MySwal.fire({
+        title: `¡NO HAY AGOTADOS EN ${args.place.toUpperCase()}!`,
+        text: `Puedes vender sin restricciones`,
+        icon: 'success',
+        iconColor: 'white',
+        timer: 20000,
+        showConfirmButton: false,
+        background: 'orange',
         color: 'white',
         allowOutsideClick: true,
       })
@@ -233,7 +247,7 @@ function App() {
     setAlert(args)
     if (soldOut.length > 0) {
       MySwal.fire({
-        title: `¡SE HA ELIMINADO ${args.product.toUpperCase()} EN ${args.place.toUpperCase()} DE AGOTADOS!`,
+        title: `¡SE HA ELIMINADO DE AGOTADOS ${args.product.toUpperCase()} EN ${args.place.toUpperCase()}!`,
         icon: 'success',
         iconColor: 'white',
         timer: 20000,
@@ -277,6 +291,7 @@ function App() {
   let isUnicentro = false
   let isPereiraPlaza = false
   let isArmenia = false
+  let isBodega = false
 
   if (!isSelectAllPDV) {
 
@@ -289,6 +304,8 @@ function App() {
     isUnicentro = (soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')) && (isButtonSelected.unicentro)
     isPereiraPlaza = (soldOut.find(soldOut => soldOut.place === 'pereiraPlaza') || suggest.find(suggest => suggest.place === 'pereiraPlaza')) && (isButtonSelected.pereiraPlaza)
     isArmenia = (soldOut.find(soldOut => soldOut.place === 'armenia') || suggest.find(suggest => suggest.place === 'armenia')) && (isButtonSelected.armenia)
+    isBodega = (soldOut.find(soldOut => soldOut.place === 'BODEGA La 18') || suggest.find(suggest => suggest.place === 'BODEGA la 18')) && (isButtonSelected.bodega)
+
   } else {
     isCircunvalar = true
     isTreinta = true
@@ -299,6 +316,7 @@ function App() {
     isUnicentro = true
     isPereiraPlaza = true
     isArmenia = true
+    isBodega = true
   }
 
 
@@ -365,6 +383,7 @@ function App() {
               {isUnicentro && <Unicentro place={'unicentro'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
               {isPereiraPlaza && <PereiraPlaza place={'pereiraPlaza'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
               {isArmenia && <Armenia place={'armenia'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
+              {isBodega && <Armenia place={'BODEGA'} infoPlaces={infoPlaces} soldOut={soldOut} suggest={suggest} />}
             </div> :
             <Loading />
         }
