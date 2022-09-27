@@ -1,5 +1,5 @@
 import styles from './loading.module.css'
-import imagen from '../assets/4500_10_01.jpg'
+import imagen from '../assets/blanco.png'
 
 export const Loading = () => {
   return (

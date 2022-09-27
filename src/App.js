@@ -65,10 +65,44 @@ function App() {
     allPDVs: false,
   })
   const [isSelectAllPDV, setIsSelectAllPDV] = useState(false)
-
   const [isPDVSelected, setIsPDVSelected] = useState(false)
   const [isBarActive, setIsBarActive] = useState(true)
+  let isCircunvalar = false
+  let isTreinta = false
+  let isCerritos = false
+  let isArboleda = false
+  let isVictoria = false
+  let isManizales = false
+  let isUnicentro = false
+  let isPereiraPlaza = false
+  let isArmenia = false
+  let isBodega = false
 
+  if (!isSelectAllPDV) {
+
+    isCircunvalar = ((soldOut.find(soldOut => soldOut.place === 'circunvalar') || suggest.find(suggest => suggest.place === 'circunvalar')) && (isButtonSelected.circunvalar))
+    isTreinta = ((soldOut.find(soldOut => soldOut.place === 'treinta') || suggest.find(suggest => suggest.place === 'treinta')) && (isButtonSelected.treinta))
+    isCerritos = (soldOut.find(soldOut => soldOut.place === 'cerritos') || suggest.find(suggest => suggest.place === 'cerritos')) && (isButtonSelected.cerritos)
+    isArboleda = (soldOut.find(soldOut => soldOut.place === 'arboleda') || suggest.find(suggest => suggest.place === 'arboleda')) && (isButtonSelected.arboleda)
+    isVictoria = (soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')) && (isButtonSelected.victoria)
+    isManizales = (soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')) && (isButtonSelected.manizales)
+    isUnicentro = (soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')) && (isButtonSelected.unicentro)
+    isPereiraPlaza = (soldOut.find(soldOut => soldOut.place === 'pereiraPlaza') || suggest.find(suggest => suggest.place === 'pereiraPlaza')) && (isButtonSelected.pereiraPlaza)
+    isArmenia = (soldOut.find(soldOut => soldOut.place === 'armenia') || suggest.find(suggest => suggest.place === 'armenia')) && (isButtonSelected.armenia)
+    isBodega = (soldOut.find(soldOut => soldOut.place === 'BODEGA La 18') || suggest.find(suggest => suggest.place === 'BODEGA la 18')) && (isButtonSelected.bodega)
+
+  } else {
+    isCircunvalar = true
+    isTreinta = true
+    isCerritos = true
+    isArboleda = true
+    isVictoria = true
+    isManizales = true
+    isUnicentro = true
+    isPereiraPlaza = true
+    isArmenia = true
+    isBodega = true
+  }
 
   useEffect(() => {
     socket.on('connection', () => {
@@ -161,31 +195,38 @@ function App() {
     }, 10000)
     // setAudioAlarm(false)
 
+    console.log(isButtonSelected[args.place], "args", args.place)
+
+
     setAlert(args)
-    if (soldOut.length > 0 && args.productName !== "SIN AGOTADOS") {
-      MySwal.fire({
-        title: `¡NUEVO AGOTADO! ${args.place.toUpperCase()}`,
-        text: `${args.productName} está agotado en ${args.place}`,
-        icon: 'error',
-        iconColor: 'white',
-        timer: 20000,
-        showConfirmButton: false,
-        background: '#BA080D',
-        color: 'white',
-        allowOutsideClick: true,
-      })
+    if (isButtonSelected[args.place]) {
+      if (soldOut.length > 0 && args.productName !== "SIN AGOTADOS") {
+        MySwal.fire({
+          title: `¡NUEVO AGOTADO! ${args.place.toUpperCase()}`,
+          text: `${args.productName} está agotado en ${args.place}`,
+          icon: 'error',
+          iconColor: 'white',
+          timer: 20000,
+          showConfirmButton: false,
+          background: '#BA080D',
+          color: 'white',
+          allowOutsideClick: true,
+        })
+      } else {
+        MySwal.fire({
+          title: `¡NO HAY AGOTADOS EN ${args.place.toUpperCase()}!`,
+          text: `Puedes vender sin restricciones`,
+          icon: 'success',
+          iconColor: 'white',
+          timer: 20000,
+          showConfirmButton: false,
+          background: 'orange',
+          color: 'white',
+          allowOutsideClick: true,
+        })
+      }
     } else {
-      MySwal.fire({
-        title: `¡NO HAY AGOTADOS EN ${args.place.toUpperCase()}!`,
-        text: `Puedes vender sin restricciones`,
-        icon: 'success',
-        iconColor: 'white',
-        timer: 20000,
-        showConfirmButton: false,
-        background: 'orange',
-        color: 'white',
-        allowOutsideClick: true,
-      })
+      console.log("no se muestra")
     }
   })
 
@@ -282,42 +323,9 @@ function App() {
     }
   })
 
-  let isCircunvalar = false
-  let isTreinta = false
-  let isCerritos = false
-  let isArboleda = false
-  let isVictoria = false
-  let isManizales = false
-  let isUnicentro = false
-  let isPereiraPlaza = false
-  let isArmenia = false
-  let isBodega = false
 
-  if (!isSelectAllPDV) {
 
-    isCircunvalar = ((soldOut.find(soldOut => soldOut.place === 'circunvalar') || suggest.find(suggest => suggest.place === 'circunvalar')) && (isButtonSelected.circunvalar))
-    isTreinta = ((soldOut.find(soldOut => soldOut.place === 'treinta') || suggest.find(suggest => suggest.place === 'treinta')) && (isButtonSelected.treinta))
-    isCerritos = (soldOut.find(soldOut => soldOut.place === 'cerritos') || suggest.find(suggest => suggest.place === 'cerritos')) && (isButtonSelected.cerritos)
-    isArboleda = (soldOut.find(soldOut => soldOut.place === 'arboleda') || suggest.find(suggest => suggest.place === 'arboleda')) && (isButtonSelected.arboleda)
-    isVictoria = (soldOut.find(soldOut => soldOut.place === 'victoria') || suggest.find(suggest => suggest.place === 'victoria')) && (isButtonSelected.victoria)
-    isManizales = (soldOut.find(soldOut => soldOut.place === 'manizales') || suggest.find(suggest => suggest.place === 'manizales')) && (isButtonSelected.manizales)
-    isUnicentro = (soldOut.find(soldOut => soldOut.place === 'unicentro') || suggest.find(suggest => suggest.place === 'unicentro')) && (isButtonSelected.unicentro)
-    isPereiraPlaza = (soldOut.find(soldOut => soldOut.place === 'pereiraPlaza') || suggest.find(suggest => suggest.place === 'pereiraPlaza')) && (isButtonSelected.pereiraPlaza)
-    isArmenia = (soldOut.find(soldOut => soldOut.place === 'armenia') || suggest.find(suggest => suggest.place === 'armenia')) && (isButtonSelected.armenia)
-    isBodega = (soldOut.find(soldOut => soldOut.place === 'BODEGA La 18') || suggest.find(suggest => suggest.place === 'BODEGA la 18')) && (isButtonSelected.bodega)
 
-  } else {
-    isCircunvalar = true
-    isTreinta = true
-    isCerritos = true
-    isArboleda = true
-    isVictoria = true
-    isManizales = true
-    isUnicentro = true
-    isPereiraPlaza = true
-    isArmenia = true
-    isBodega = true
-  }
 
 
   const handleViewPDV = (place) => {
