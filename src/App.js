@@ -196,9 +196,8 @@ function App() {
     // setAudioAlarm(false)
 
     console.log(isButtonSelected[args.place], "args", args.place)
-
-
     setAlert(args)
+    console.log("entro")
     if (isButtonSelected[args.place]) {
       if (soldOut.length > 0 && args.productName !== "SIN AGOTADOS") {
         MySwal.fire({
@@ -240,18 +239,22 @@ function App() {
       setAudioAlarm(false)
     }, 5000)
     setAlert(args)
-    if (soldOut.length > 0) {
-      MySwal.fire({
-        title: `¡NUEVO SUGERIDO! EN ${args.place.toUpperCase()}`,
-        text: `${args.productName} es sugerido en ${args.place}`,
-        icon: 'success',
-        iconColor: 'white',
-        timer: 20000,
-        showConfirmButton: false,
-        background: '#0E9528',
-        color: 'white',
-        allowOutsideClick: true,
-      })
+    if (isButtonSelected[args.place]) {
+      if (soldOut.length > 0) {
+        MySwal.fire({
+          title: `¡NUEVO SUGERIDO! EN ${args.place.toUpperCase()}`,
+          text: `${args.productName} es sugerido en ${args.place}`,
+          icon: 'success',
+          iconColor: 'white',
+          timer: 20000,
+          showConfirmButton: false,
+          background: '#0E9528',
+          color: 'white',
+          allowOutsideClick: true,
+        })
+      }
+    } else {
+      console.log("no se muestra")
     }
   })
 

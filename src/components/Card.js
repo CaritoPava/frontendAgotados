@@ -20,6 +20,7 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
     BODEGA: "BODEGA",
   }
 
+
   return (
     <>
       {
