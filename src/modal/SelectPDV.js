@@ -29,15 +29,15 @@ export const SelectPDV = ({ setViewPDV, viewPDV, handleViewPDV, handleViewPDVAll
 
             <ImgModal src={img} alt="" />
             <ButtonSelect isButtonSelected={isButtonSelected.circunvalar} onClick={() => handleViewPDV('circunvalar')}>Circunvalar</ButtonSelect>
-            <ButtonSelect isButtonSelected={isButtonSelected.treinta} onClick={() => handleViewPDV('treinta')}>Av 30 de Agosto</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.treinta} onClick={() => handleViewPDV('treinta')}>Avenida 30 de Agosto</ButtonSelect>
             <ButtonSelect isButtonSelected={isButtonSelected.cerritos} onClick={() => handleViewPDV('cerritos')}>Portal de Cerritos</ButtonSelect>
-            <ButtonSelect isButtonSelected={isButtonSelected.victoria} onClick={() => handleViewPDV('victoria')}>Ciudad Victoria</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.victoria} onClick={() => handleViewPDV('victoria')}>Victoria</ButtonSelect>
             <ButtonSelect isButtonSelected={isButtonSelected.unicentro} onClick={() => handleViewPDV('unicentro')}>Unicentro</ButtonSelect>
-            <ButtonSelect isButtonSelected={isButtonSelected.manizales} onClick={() => handleViewPDV('manizales')}>Mall Plaza (Manizales)</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.mallPlaza} onClick={() => handleViewPDV('mallPlaza')}>Mall Plaza</ButtonSelect>
             <ButtonSelect isButtonSelected={isButtonSelected.arboleda} onClick={() => handleViewPDV('arboleda')}>Parque Arboleda</ButtonSelect>
             <ButtonSelect isButtonSelected={isButtonSelected.pereiraPlaza} onClick={() => handleViewPDV('pereiraPlaza')}>Pereira Plaza</ButtonSelect>
-            <ButtonSelect isButtonSelected={isButtonSelected.armenia} onClick={() => handleViewPDV('armenia')}>Armenia</ButtonSelect>
-            <ButtonSelect isButtonSelected={isButtonSelected.BODEGA} onClick={() => handleViewPDV('BODEGA')}>Bodega</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.privilegio} onClick={() => handleViewPDV('privilegio')}>Privilegio Mall Armenia</ButtonSelect>
+            <ButtonSelect isButtonSelected={isButtonSelected.bodega} onClick={() => handleViewPDV('bodega')}>Bodega</ButtonSelect>
             <ButtonSelectAll isButtonSelected={isSelectAllPDV} onClick={() => handleViewPDVAll()} >All PDVs</ButtonSelectAll>
             {/* <ButtonSelect  onClick={() => handleViewPDVAll()} ><ButtonSelect> */}
             {/* <ButtonSelect isButtonSelected={isButtonSelected.allPDVs} onClick={() => handleViewPDV("allPDVs")}>SELECIONAR TODO</ButtonSelect> */}

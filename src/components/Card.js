@@ -1,3 +1,4 @@
+import { namesPDVS } from '../helpers/namesPDVS'
 import styles from './card.module.css'
 
 import { InfoDeliveryPromise } from './InfoDeliveryPromise'
@@ -7,18 +8,7 @@ import { InfoProducts } from './InfoProducts'
 
 
 export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
-  const places = {
-    circunvalar: "CIRCUNVALAR",
-    treinta: "AV 30 DE AGOSTO",
-    cerritos: "P DE CERRITOS",
-    arboleda: "PARQUE ARBOLEDA",
-    victoria: "CIUDAD VICTORIA",
-    manizales: "MANIZALES",
-    unicentro: "UNICENTRO",
-    pereiraPlaza: "PEREIRA PLAZA",
-    armenia: "ARMENIA",
-    BODEGA: "BODEGA",
-  }
+  const places = namesPDVS
 
 
   return (
@@ -54,7 +44,7 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           null
       }
       {
-        places[place] === "P DE CERRITOS"
+        places[place] === "PORTAL CERRITOS"
           ?
           <div
             className={styles.contendCard1}
@@ -69,7 +59,7 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           null
       }
       {
-        places[place] === "PARQUE ARBOLEDA"
+        places[place] === "ARBOLEDA"
           ?
           <div
             className={styles.contendCard1}
@@ -84,7 +74,7 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           null
       }
       {
-        places[place] === "CIUDAD VICTORIA"
+        places[place] === "VICTORIA"
           ?
           <div
             className={styles.contendCard1}
@@ -99,7 +89,7 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           null
       }
       {
-        places[place] === "MANIZALES"
+        places[place] === "MALL PLAZA"
           ?
           <div
             className={styles.contendCard1}
@@ -144,7 +134,7 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           null
       }
       {
-        places[place] === "ARMENIA"
+        places[place] === "PRIVILEGIO MALL PLAZA"
           ?
           <div
             className={styles.contendCard1}

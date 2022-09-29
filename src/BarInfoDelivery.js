@@ -1,23 +1,11 @@
 import React, { useState } from 'react'
 import { InfoDeliveryPromise } from './components/InfoDeliveryPromise'
 import styles from './barInfoDelivery.module.css'
+import { namesPDVS } from './helpers/namesPDVS'
 
 export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected, isSelectAllPDV }) => {
+  const places = namesPDVS
 
-
-
-  const places = {
-    circunvalar: "CIRCUNVALAR",
-    treinta: "AV 30 DE AGOSTO",
-    cerritos: "P DE CERRITOS",
-    arboleda: "PARQUE ARBOLEDA",
-    victoria: "CIUDAD VICTORIA",
-    manizales: "MANIZALES",
-    unicentro: "UNICENTRO",
-    armenia: "ARMENIA",
-    pereiraPlaza: "PEREIRA PLAZA",
-    BODEGA: "BODEGA",
-  }
   return (
     <div className={styles.contedBar}>
 
@@ -69,10 +57,10 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected, i
       }
 
       {
-        (isButtonSelected.manizales || isSelectAllPDV) && (
+        (isButtonSelected.mallPlaza || isSelectAllPDV) && (
           <div className={styles.card}>
-            <h4 className={styles.namePDV}>{places.manizales}</h4>
-            <InfoDeliveryPromise infoPlaces={infoPlaces} place={"manizales"} />
+            <h4 className={styles.namePDV}>{places.mallPlaza}</h4>
+            <InfoDeliveryPromise infoPlaces={infoPlaces} place={"mallPlaza"} />
           </div>
         )
       }
@@ -87,10 +75,10 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected, i
       }
 
       {
-        (isButtonSelected.armenia || isSelectAllPDV) && (
+        (isButtonSelected.privilegio || isSelectAllPDV) && (
           <div className={styles.card}>
-            <h4 className={styles.namePDV}>{places.armenia}</h4>
-            <InfoDeliveryPromise infoPlaces={infoPlaces} place={"armenia"} />
+            <h4 className={styles.namePDV}>{places.privilegio}</h4>
+            <InfoDeliveryPromise infoPlaces={infoPlaces} place={"privilegio"} />
           </div>
         )
       }
@@ -104,9 +92,9 @@ export const BarInfoDelivery = ({ infoPlaces, isButtonSelected, isPDVSelected, i
         )
       }
       {
-        (isButtonSelected.BODEGA || isSelectAllPDV) && (
+        (isButtonSelected.bodega || isSelectAllPDV) && (
           <div className={styles.card}>
-            <h4 className={styles.namePDV}>{places.BODEGA}</h4>
+            <h4 className={styles.namePDV}>{places.bodega}</h4>
             <InfoDeliveryPromise infoPlaces={infoPlaces} />
           </div>
         )

@@ -12,10 +12,10 @@ export const InfoDeliveryPromise = ({ infoPlaces, place }) => {
     "cerritos",
     "arboleda",
     "victoria",
-    "manizales",
+    "mallPlaza",
     "unicentro",
-    " armenia",
-    " pereiraPlaza"
+    "armenia",
+    "pereiraPlaza"
   ]
 
 
