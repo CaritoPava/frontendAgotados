@@ -34,7 +34,14 @@ const socket = io(process.env.REACT_APP_URL_RT || 'localhost:9000', {
 const MySwal = withReactContent(Swal)
 
 function App() {
+
+
+
   console.log('version 1.0.0')
+
+  // guardar pdvs seleccionados en el localstorage
+
+
 
   const namesPDVSView = namesPDVS
 
@@ -70,9 +77,19 @@ function App() {
     bodega: false,
     allPDVs: false,
   })
+
+  useEffect(() => {
+    //cargar informacion de localstorage
+    const localstorage = JSON.parse(localStorage.getItem('isButtonSelected'))
+    console.log(localstorage)
+    if (localstorage) {
+      setIsButtonSelected(localstorage)
+    }
+  }, [])
   const [isSelectAllPDV, setIsSelectAllPDV] = useState(false)
   const [isPDVSelected, setIsPDVSelected] = useState(false)
   const [isBarActive, setIsBarActive] = useState(true)
+
   let isCircunvalar = false
   let isTreinta = false
   let isCerritos = false
@@ -352,6 +369,10 @@ function App() {
       [place]: !isButtonSelected[place]
     })
 
+
+
+
+
   }
 
   const handleViewPDVAll = () => {
@@ -367,6 +388,7 @@ function App() {
     let isAnyButtonSelected = 0
     for (const place in isButtonSelected) {
       if (isButtonSelected[place]) {
+        localStorage.setItem("isButtonSelected", JSON.stringify(isButtonSelected))
         isAnyButtonSelected += 1
       }
     }
