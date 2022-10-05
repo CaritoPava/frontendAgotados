@@ -81,10 +81,11 @@ function App() {
   useEffect(() => {
     //cargar informacion de localstorage
     const localstorage = JSON.parse(localStorage.getItem('isButtonSelected'))
-    console.log(localstorage)
+
     if (localstorage) {
       setIsButtonSelected(localstorage)
     }
+
   }, [])
   const [isSelectAllPDV, setIsSelectAllPDV] = useState(false)
   const [isPDVSelected, setIsPDVSelected] = useState(false)
