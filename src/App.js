@@ -214,30 +214,12 @@ function App() {
     ])
 
     if (isButtonSelected[args.place]) {
-      console.log("entro")
-      if (soldOut.length > 0 && args.productName !== "SIN AGOTADOS") {
-        setAudioAlarm(true)
-        setTimeout(() => {
-          setAudioAlarm(false)
-        }, 10000)
-        setAlert(args)
-        MySwal.fire({
-          title: `¡NUEVO AGOTADO! ${namesPDVSView[args.place]}`,
-          text: `${args.productName} está agotado en ${namesPDVSView[args.place]}`,
-          icon: 'error',
-          iconColor: 'white',
-          timer: 20000,
-          showConfirmButton: false,
-          background: '#BA080D',
-          color: 'white',
-          allowOutsideClick: true,
-        })
-      } else {
-        setAudioAlarm(true)
-        setTimeout(() => {
-          setAudioAlarm(false)
-        }, 10000)
-        setAlert(args)
+      setAudioAlarm(true)
+      setTimeout(() => {
+        setAudioAlarm(false)
+      }, 10000)
+      setAlert(args)
+      if (args.productName === "SIN AGOTADOS") {
         MySwal.fire({
           title: `¡NO HAY AGOTADOS EN ${namesPDVSView[args.place]}!`,
           text: `Puedes vender sin restricciones`,
@@ -251,9 +233,51 @@ function App() {
         })
       }
     } else {
-      console.log("no se muestra")
+      MySwal.fire({
+        title: `¡NUEVO AGOTADO! ${namesPDVSView[args.place]}`,
+        text: `${args.productName} está agotado en ${namesPDVSView[args.place]}`,
+        icon: 'error',
+        iconColor: 'white',
+        timer: 20000,
+        showConfirmButton: false,
+        background: '#BA080D',
+        color: 'white',
+        allowOutsideClick: true,
+      })
     }
   })
+
+  //   if (isButtonSelected[args.place]) {
+  //     console.log("entro")
+  //     if (soldOut.length > 0 && args.productName !== "SIN AGOTADOS") {
+  //       MySwal.fire({
+  //         title: `¡NUEVO AGOTADO! ${namesPDVSView[args.place]}`,
+  //         text: `${args.productName} está agotado en ${namesPDVSView[args.place]}`,
+  //         icon: 'error',
+  //         iconColor: 'white',
+  //         timer: 20000,
+  //         showConfirmButton: false,
+  //         background: '#BA080D',
+  //         color: 'white',
+  //         allowOutsideClick: true,
+  //       })
+  //     } else {
+  //       MySwal.fire({
+  //         title: `¡NO HAY AGOTADOS EN ${namesPDVSView[args.place]}!`,
+  //         text: `Puedes vender sin restricciones`,
+  //         icon: 'success',
+  //         iconColor: 'white',
+  //         timer: 20000,
+  //         showConfirmButton: false,
+  //         background: 'orange',
+  //         color: 'white',
+  //         allowOutsideClick: true,
+  //       })
+  //     }
+  //   } else {
+  //     console.log("no se muestra")
+  //   }
+  // })
 
   socket.on('stock_cc_suggest', (args) => {
     setSuggest([
