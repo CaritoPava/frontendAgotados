@@ -137,7 +137,7 @@ function App() {
       setIsConnected(false)
     })
 
-    const urlPlaces = `${process.env.REACT_APP_URL_API || 'localhost:8080'}/api/places`
+    const urlPlaces = `http://3.87.44.241:8080/api/places`
 
 
     try {
