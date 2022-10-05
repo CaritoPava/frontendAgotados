@@ -213,12 +213,12 @@ function App() {
       args
     ])
 
+    setAudioAlarm(true)
+    setTimeout(() => {
+      setAudioAlarm(false)
+    }, 10000)
+    setAlert(args)
     if (isButtonSelected[args.place]) {
-      setAudioAlarm(true)
-      setTimeout(() => {
-        setAudioAlarm(false)
-      }, 10000)
-      setAlert(args)
       if (args.productName === "SIN AGOTADOS") {
         MySwal.fire({
           title: `¡NO HAY AGOTADOS EN ${namesPDVSView[args.place]}!`,
@@ -231,19 +231,19 @@ function App() {
           color: 'white',
           allowOutsideClick: true,
         })
+      } else {
+        MySwal.fire({
+          title: `¡NUEVO AGOTADO! ${namesPDVSView[args.place]}`,
+          text: `${args.productName} está agotado en ${namesPDVSView[args.place]}`,
+          icon: 'error',
+          iconColor: 'white',
+          timer: 20000,
+          showConfirmButton: false,
+          background: '#BA080D',
+          color: 'white',
+          allowOutsideClick: true,
+        })
       }
-    } else {
-      MySwal.fire({
-        title: `¡NUEVO AGOTADO! ${namesPDVSView[args.place]}`,
-        text: `${args.productName} está agotado en ${namesPDVSView[args.place]}`,
-        icon: 'error',
-        iconColor: 'white',
-        timer: 20000,
-        showConfirmButton: false,
-        background: '#BA080D',
-        color: 'white',
-        allowOutsideClick: true,
-      })
     }
   })
 
