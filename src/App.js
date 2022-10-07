@@ -25,7 +25,7 @@ import { Bodega } from './components/cardsPDV/Bodega';
 import { namesPDVS } from './helpers/namesPDVS'
 
 
-const socket = io(process.env.REACT_APP_URL_RT || 'localhost:9000', {
+const socket = io("http://44.208.37.247:9000", {
   query: {
     alias: 'call center'
   }
@@ -80,11 +80,11 @@ function App() {
 
   useEffect(() => {
     //cargar informacion de localstorage
-    const localstorage = JSON.parse(localStorage.getItem('isButtonSelected'))
+    // const localstorage = JSON.parse(localStorage.getItem('isButtonSelected'))
 
-    if (localstorage) {
-      setIsButtonSelected(localstorage)
-    }
+    // if (localstorage) {
+    //   setIsButtonSelected(localstorage)
+    // }
 
   }, [])
   const [isSelectAllPDV, setIsSelectAllPDV] = useState(false)
@@ -413,7 +413,7 @@ function App() {
     let isAnyButtonSelected = 0
     for (const place in isButtonSelected) {
       if (isButtonSelected[place]) {
-        localStorage.setItem("isButtonSelected", JSON.stringify(isButtonSelected))
+        // localStorage.setItem("isButtonSelected", JSON.stringify(isButtonSelected))
         isAnyButtonSelected += 1
       }
     }
