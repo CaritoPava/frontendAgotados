@@ -218,7 +218,7 @@ function App() {
       setAudioAlarm(false)
     }, 10000)
     setAlert(args)
-    if (isButtonSelected[args.place]) {
+    if (isButtonSelected[args.place] || isSelectAllPDV) {
       if (args.productName === "SIN AGOTADOS") {
         MySwal.fire({
           title: `¡NO HAY AGOTADOS EN ${namesPDVSView[args.place]}!`,
