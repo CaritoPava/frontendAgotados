@@ -134,7 +134,7 @@ export const Card = ({ place, infoPlaces, soldOut, suggest }) => {
           null
       }
       {
-        places[place] === "PRIVILEGIO MALL PLAZA"
+        places[place] === "PRIVILEGIO ARMENIA"
           ?
           <div
             className={styles.contendCard1}
