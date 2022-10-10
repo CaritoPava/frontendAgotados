@@ -8,5 +8,5 @@ export const namesPDVS = {
   cerritos: "PORTAL CERRITOS",
   bodega: "BODEGA",
   mallPlaza: "MALL PLAZA",
-  privilegio: "PRIVILEGIO MALL PLAZA",
+  privilegio: "PRIVILEGIO ARMENIA",
 }
