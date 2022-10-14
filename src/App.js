@@ -25,7 +25,7 @@ import { Bodega } from './components/cardsPDV/Bodega';
 import { namesPDVS } from './helpers/namesPDVS'
 
 
-const socket = io("http://44.208.37.247:9000", {
+const socket = io("http://3.87.44.241", {
   query: {
     alias: 'call center'
   }
@@ -137,7 +137,7 @@ function App() {
       setIsConnected(false)
     })
 
-    const urlPlaces = `http://44.208.37.247:8080/api/places`
+    const urlPlaces = `http://3.87.44.241:8080/api/places`
 
 
     try {
